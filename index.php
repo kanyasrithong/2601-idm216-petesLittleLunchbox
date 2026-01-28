@@ -10,6 +10,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pete's Little Lunchbox</title>
+  <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
   <h1>Category Table</h1>
