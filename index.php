@@ -25,8 +25,8 @@
     <?php
       while ($category = $categories_result->fetch_assoc()) : ?>
         <tr>
-          <th><?= $category['id'] ?></th>
-          <th><?= $category['category_name'] ?></th>
+          <td><?= $category['id'] ?></td>
+          <td><?= $category['category_name'] ?></td>
         </tr>
     <?php endwhile ?>
   </table>
@@ -41,10 +41,10 @@
     <?php
       while ($item = $items_result->fetch_assoc()) : ?>
         <tr>
-          <th><?= $item['id'] ?></th>
-          <th><?= $item['category_id'] ?></th>
-          <th><?= $item['item_name'] ?></th>
-          <th><img src="assets/images/<?= $item['img_url'] ?>" alt=""></th>
+          <td><?= $item['id'] ?></td>
+          <td><?= $item['category_id'] ?></td>
+          <td><?= $item['item_name'] ?></td>
+          <td><img src="assets/images/<?= $item['img_url'] ?>" alt=""></td>
         </tr>
     <?php endwhile ?>
   </table>
@@ -60,11 +60,11 @@
     <?php
       while ($variant = $variants_result->fetch_assoc()) : ?>
         <tr>
-          <th><?= $variant['id'] ?></th>
-          <th><?= $variant['item_id'] ?></th>
-          <th><?= $variant['variant_name'] ?></th>
-          <th><?= $variant['price'] ?></th>
-          <th><img src="assets/images/<?= $variant['img_url'] ?>" alt=""></th>
+          <td><?= $variant['id'] ?></td>
+          <td><?= $variant['item_id'] ?></td>
+          <td><?= $variant['variant_name'] ?></td>
+          <td><?= $variant['price'] ?></td>
+          <td><img src="assets/images/<?= $variant['img_url'] ?>" alt=""></td>
         </tr>
     <?php endwhile ?>
   </table>
@@ -80,11 +80,11 @@
     <?php
       while ($bs_variant = $bs_result->fetch_assoc()) : ?>
         <tr>
-          <th><?= $bs_variant['id'] ?></th>
-          <th><?= $bs_variant['item_id'] ?></th>
-          <th><?= $bs_variant['variant_id'] ?></th>
-          <th><?= $bs_variant['bs_name'] ?></th>
-          <th><img src="assets/images/<?= $bs_variant['img_url'] ?>" alt=""></th>
+          <td><?= $bs_variant['id'] ?></td>
+          <td><?= $bs_variant['item_id'] ?></td>
+          <td><?= $bs_variant['variant_id'] ?></td>
+          <td><?= $bs_variant['bs_name'] ?></td>
+          <td><img src="assets/images/<?= $bs_variant['img_url'] ?>" alt=""></td>
         </tr>
     <?php endwhile ?>
   </table>
@@ -104,15 +104,15 @@
     <?php
       while ($order = $order_result->fetch_assoc()) : ?>
         <tr>
-          <th><?= $order['id'] ?></th>
-          <th><?= $order['item_id'] ?></th>
-          <th><?= $order['variant_id'] ?></th>
-          <th><?= $order['bs_id'] ?></th>
-          <th><?= $order['quantity'] ?></th>
-          <th><?= $order['unit_price'] ?></th>
-          <th><?= $order['subtotal'] ?></th>
-          <th><?= $order['special_requests'] ?></th>
-          <th><?= $order['tip'] ?></th>
+          <td><?= $order['id'] ?></td>
+          <td><?= $order['item_id'] ?></td>
+          <td><?= $order['variant_id'] ?></td>
+          <td><?= $order['bs_id'] ?></td>
+          <td><?= $order['quantity'] ?></td>
+          <td><?= $order['unit_price'] ?></td>
+          <td><?= $order['subtotal'] ?></td>
+          <td><?= $order['special_requests'] ?></td>
+          <td><?= $order['tip'] ?></td>
         </tr>
     <?php endwhile ?>
   </table>
