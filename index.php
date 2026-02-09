@@ -14,7 +14,7 @@
   <title>Pete's Little Lunchbox</title>
   <link rel="stylesheet" href="styles/styles.css">
 </head>
-<body>
+<body class="body-center">
   <main>
     <h1>Categories</h1>
   <table>
