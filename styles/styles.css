@@ -11,3 +11,21 @@ table {
 img {
   width: 200px;
 }
+
+.body-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+}
+
+.order-summary-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
