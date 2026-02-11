@@ -1,0 +1,192 @@
+/* ---------- ROOT COLORS ---------- */
+:root{
+    --ink: #252203;
+    --olive: #736A08;
+    --pink: #F2D4C9;
+    --bg: #FBF6E9;
+  }
+  
+  /* ---------- GLOBAL ---------- */
+  *{
+    box-sizing: border-box;
+  }
+  
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Karla", system-ui, sans-serif;
+  }
+  
+  /* ---------- HEADER ---------- */
+  .top{
+    padding: 98px 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .welcome{
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -1.92px;
+  }
+  
+  .brand{
+    font-family: Georgia, serif; /* Canela fallback */
+    font-style: italic;
+  }
+  
+  .hours{
+    font-size: 14px;
+    color: #736A08;
+    letter-spacing: 0.28px;
+  }
+  
+  /* ---------- CATEGORY CHIPS ---------- */
+  .chips{
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 8px 0;
+  }
+  
+  .chips::-webkit-scrollbar{
+    display: none;
+  }
+  
+  .chip{
+    white-space: nowrap;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--olive);
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 12px;
+  }
+  
+  .chip.active{
+    background: var(--pink);
+  }
+  
+  /* ---------- PAGE ---------- */
+  .page{
+    padding: 0 20px 90px;
+  }
+  
+  .section{
+    margin-top: 24px;
+  }
+  
+  .section-title{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  /* ---------- CARD ROW ---------- */
+  .card-row{
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  
+  .card-row::-webkit-scrollbar{
+    display: none;
+  }
+  
+  /* ---------- CARD ---------- */
+  .card{
+    width: 174.5px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid var(--olive);
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  
+  /* image wrapper */
+  .card-img-wrap{
+    height: 106px;
+    padding: 0px;
+    border: 1px solid var(--olive);
+    border-radius: 4px;
+  }
+  
+  .card-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  /* ---------- CARD BOTTOM ---------- */
+  .card-bottom{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  
+/* price + button row */
+  .card-action{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* title */
+  .card-name{
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.28px;
+  }
+  
+  /* price */
+  .card-price{
+    margin: 0;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.28px;
+  }
+  
+  /* plus button */
+  .add-btn{
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+    border-radius: 6px;
+    border: 2px solid #45371F;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* ---------- BOTTOM NAV ---------- */
+  .bottom-nav{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--pink);
+    display: flex;
+    justify-content: space-around;
+    padding: 14px 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+  
+  .nav-item{
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 12px;
+  }
+  
+  .nav-item.active{
+    font-weight: 700;
+  }
