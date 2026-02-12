@@ -190,3 +190,9 @@
   .nav-item.active{
     font-weight: 700;
   }
+
+  .card-link{
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+  }

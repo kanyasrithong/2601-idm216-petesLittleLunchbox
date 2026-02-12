@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bag</title>
+
+  <!-- shared homepage css -->
+  <link rel="stylesheet" href="/alpha/css/style.css" />
+  <!-- bag page css -->
+  <link rel="stylesheet" href="/alpha/css/bag.css" />
+</head>
+
+<body class="bag">
+
+  <main class="bag-page">
+
+    <!-- BACK (goes to customize.html like you wanted) -->
+    <header class="bag-topbar">
+      <a class="icon-btn" href="customize.html" aria-label="Back to customize">‹</a>
+    </header>
+
+    <!-- PICKUP HEADER -->
+    <section class="pickup">
+      <h1 class="pickup-title">
+        Pickup from <span class="brand">Pete’s</span>
+      </h1>
+      <p class="pickup-address">11 N 33rd St, Philadelphia, PA 19104</p>
+    </section>
+
+    <!-- ASAP + SCHEDULE (static styled boxes) -->
+    <section class="pickup-options">
+      <div class="pickup-box">
+        <p class="pickup-box-text">ASAP (ready in ~12 min)</p>
+      </div>
+
+      <div class="pickup-box pickup-box-row">
+        <p class="pickup-box-text">Schedule Pickup Time</p>
+        <div class="select-icon" aria-hidden="true">⌄</div>
+      </div>
+    </section>
+
+    <!-- BAG ITEM (white card section) -->
+    <section class="bag-item">
+      <div class="bag-item-row">
+
+        <img class="bag-item-img" src="/assets/images/menu/bs/egg_cheese.webp" alt="Egg & Cheese" />
+
+        <div class="bag-item-content">
+          <div class="bag-item-topline">
+            <div class="bag-item-text">
+              <p class="bag-item-name">Egg &amp; Cheese</p>
+              <p class="bag-item-addon">+ Bacon</p>
+            </div>
+
+            <div class="bag-item-right">
+              <p class="bag-item-price">$6.00</p>
+              <button class="trash-btn" type="button" aria-label="Remove item">🗑</button>
+            </div>
+          </div>
+
+          <div class="bag-item-bottomline">
+            <button class="edit-btn" type="button">EDIT ✎</button>
+
+            <div class="qty-controls">
+              <button class="qty-btn" type="button" aria-label="Decrease quantity">−</button>
+              <p class="qty-num">1</p>
+              <button class="qty-btn" type="button" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ADD A SIDE (horizontal scroll) -->
+    <section class="add-side">
+      <h2 class="add-side-title">WANT TO ADD A SIDE?</h2>
+
+      <div class="add-side-row">
+        <!-- card 1 -->
+        <article class="card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="/assets/images/menu/sides/chip.webp" alt="Potato Chips">
+          </div>
+
+          <div class="card-bottom">
+            <div class="card-info">
+              <p class="card-name">Potato Chips</p>
+              <p class="card-price">$0.75</p>
+            </div>
+            <button class="add-btn" type="button">+</button>
+          </div>
+        </article>
+
+        <!-- card 2 -->
+        <article class="card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="/assets/images/menu/sides/muffin.webp" alt="Muffin">
+          </div>
+
+          <div class="card-bottom">
+            <div class="card-info">
+              <p class="card-name">Muffin</p>
+              <p class="card-price">$1.75</p>
+            </div>
+            <button class="add-btn" type="button">+</button>
+          </div>
+        </article>
+
+        <!-- card 3 -->
+        <article class="card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="/assets/images/menu/sides/hashbrown.webp" alt="Cookie">
+          </div>
+
+          <div class="card-bottom">
+            <div class="card-info">
+              <p class="card-name">Hashbrown</p>
+              <p class="card-price">$1.25</p>
+            </div>
+            <button class="add-btn" type="button">+</button>
+          </div>
+        </article>
+
+        <!-- card 4 -->
+        <article class="card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="/assets/images/menu/sides/bagel.webp" alt="Fruit Cup">
+          </div>
+
+          <div class="card-bottom">
+            <div class="card-info">
+              <p class="card-name">Bagel</p>
+              <p class="card-price">$2.00</p>
+            </div>
+            <button class="add-btn" type="button">+</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROCEED BUTTON -->
+    <section class="checkout">
+      <a class="primary-btn" href="#" aria-label="Proceed to checkout">Proceed to Checkout</a>
+    </section>
+
+  </main>
+
+</body>
+</html>
