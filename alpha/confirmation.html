@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order Confirmation</title>
+
+  <!-- shared styles (colors, fonts, buttons, resets) -->
+  <link rel="stylesheet" href="/alpha/css/style.css" />
+  <!-- page styles -->
+  <link rel="stylesheet" href="/alpha/css/confirmation.css" />
+</head>
+
+<body class="confirmation-body">
+
+  <main class="confirm-page">
+
+    <h1 class="confirm-title">Your Order Number is #32</h1>
+
+    <!-- MAP -->
+    <img class="confirm-map"
+         src="assets/images/map-placeholder.png"
+         alt="Map location" />
+
+    <!-- PICKUP STATUS -->
+    <section class="pickup-card">
+      <div class="pickup-text">
+        <p class="pickup-heading">Pickup Status</p>
+        <p class="pickup-sub">Est Ready by: 11:00am</p>
+      </div>
+
+      <div class="pickup-progress">
+        <div class="progress-row">
+          <span class="dot dot-active"></span>
+          <span class="line"></span>
+          <span class="dot"></span>
+          <span class="line"></span>
+          <span class="dot"></span>
+        </div>
+
+        <div class="progress-labels">
+          <span class="progress-label">Received</span>
+          <span class="progress-label">Preparing</span>
+          <span class="progress-label">Completed</span>
+        </div>
+      </div>
+    </section>
+
+    <h2 class="order-title">Your Order</h2>
+
+    <!-- Reuse your bag styles if you already have them.
+         This HTML matches the same structure you used earlier -->
+    <section class="order-card">
+      <div class="order-item">
+        <img class="order-img" src="/assets/images/menu/bs/egg_cheese.webp" alt="Egg & Cheese" />
+
+        <div class="order-info">
+          <p class="order-name">Egg &amp; Cheese</p>
+          <p class="order-addon">+ Bacon</p>
+          
+        </div>
+
+        <div class="order-right">
+          <div class="order-top">
+            <p class="order-price">$6.00</p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- bottom area (pushes down evenly) -->
+    <div class="confirm-bottom">
+      <section class="total-row">
+        <span class="total-label">Total</span>
+        <span class="total-value">$8.34</span>
+      </section>
+
+      <a class="primary-btn" href="index.html">Return Home</a>
+    </div>
+
+  </main>
+
+</body>
+</html>

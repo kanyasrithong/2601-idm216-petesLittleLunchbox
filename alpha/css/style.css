@@ -196,3 +196,42 @@
     color: inherit;
     display: inline-block;
   }
+
+  /* shared icon button */
+.icon-btn{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    border-radius: 8px;
+    border: 1px solid #45371F;
+    background: #F6F1BF;
+  
+    text-decoration: none;
+    color: #45371F;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  /* shared primary button */
+.primary-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    padding: 11px 100px;
+    border-radius: 10px;
+    background: #252203;
+  
+    text-decoration: none;
+    color: #CBDF88;
+  
+    font-family: Satoshi, system-ui, "Karla", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.32px;
+    line-height: normal;
+  }
