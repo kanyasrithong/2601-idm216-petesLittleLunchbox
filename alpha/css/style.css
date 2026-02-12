@@ -1,0 +1,267 @@
+/* ---------- ROOT COLORS ---------- */
+:root{
+    --ink: #252203;
+    --olive: #736A08;
+    --pink: #F2D4C9;
+    --bg: #FBF6E9;
+  }
+  
+  /* ---------- GLOBAL ---------- */
+  *{
+    box-sizing: border-box;
+  }
+  
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Karla", system-ui, sans-serif;
+  }
+  
+  /* ---------- HEADER ---------- */
+  .top{
+    padding: 98px 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .welcome{
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -1.92px;
+  }
+  
+  .brand{
+    font-family: Georgia, serif; /* Canela fallback */
+    font-style: italic;
+  }
+  
+  .hours{
+    font-size: 14px;
+    color: #736A08;
+    letter-spacing: 0.28px;
+  }
+  
+  /* ---------- CATEGORY CHIPS ---------- */
+  .chips{
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 8px 0;
+  }
+  
+  .chips::-webkit-scrollbar{
+    display: none;
+  }
+  
+  .chip{
+    white-space: nowrap;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--olive);
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 12px;
+  }
+  
+  .chip.active{
+    background: var(--pink);
+  }
+  
+  /* ---------- PAGE ---------- */
+  .page{
+    padding: 0 20px 90px;
+  }
+  
+  .section{
+    margin-top: 24px;
+  }
+  
+  .section-title{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  /* ---------- CARD ROW ---------- */
+  .card-row{
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  
+  .card-row::-webkit-scrollbar{
+    display: none;
+  }
+  
+  /* ---------- CARD ---------- */
+  .card{
+    width: 174.5px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid var(--olive);
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  
+  /* image wrapper */
+  .card-img-wrap{
+    height: 106px;
+    padding: 0px;
+    border: 1px solid var(--olive);
+    border-radius: 4px;
+  }
+  
+  .card-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  /* ---------- CARD BOTTOM ---------- */
+  .card-bottom{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  
+/* price + button row */
+  .card-action{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* title */
+  .card-name{
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.28px;
+  }
+  
+  /* price */
+  .card-price{
+    margin: 0;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.28px;
+  }
+  
+  /* plus button */
+  .add-btn{
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+    border-radius: 6px;
+    border: 2px solid #45371F;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+/* ===== Bottom Navigation ===== */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  
+    height: 90px;
+    background: #F2D4C9;
+  
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  
+    padding: 12px 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+    z-index: 100;
+  }
+  
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  
+    text-decoration: none;
+    color: #45371F;
+  
+    font-family: Satoshi;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  .nav-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+  
+  /* Active state (like your green home icon) */
+  .nav-item.active {
+    color: #736A08;
+  }
+  
+  .nav-item.active .nav-icon {
+    filter: brightness(0) saturate(100%) invert(42%) sepia(18%) saturate(1087%) hue-rotate(16deg);
+  }
+
+  .card-link{
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+  }
+
+  /* shared icon button */
+.icon-btn{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    border-radius: 8px;
+    border: 1px solid #45371F;
+    background: #F6F1BF;
+  
+    text-decoration: none;
+    color: #45371F;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  /* shared primary button */
+.primary-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    padding: 11px 100px;
+    border-radius: 10px;
+    background: #252203;
+  
+    text-decoration: none;
+    color: #CBDF88;
+  
+    font-family: Satoshi, system-ui, "Karla", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.32px;
+    line-height: normal;
+  }
+
+  body {
+    padding-bottom: 90px;
+  }
