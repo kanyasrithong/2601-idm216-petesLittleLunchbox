@@ -78,7 +78,7 @@
     <!-- dashed pink divider -->
     <div class="divider-pink" aria-hidden="true"></div>
 
-    <!-- summary -->
+    <!-- summary (static display is fine for now) -->
     <section class="summary">
 
       <div class="summary-row">
@@ -109,27 +109,25 @@
 
     </section>
 
-    <!-- button (same as other primary buttons) -->
+    <!-- button -->
     <section class="payment-footer">
-        <button class="primary-btn" id="placeOrderBtn">Place Order</button>
+      <button class="primary-btn" id="placeOrderBtn">Place Order</button>
     </section>
-
-    
 
   </main>
 
   <!-- Apple Pay Overlay -->
-<div class="applepay-overlay" id="applePayOverlay" aria-hidden="true">
+  <div class="applepay-overlay" id="applePayOverlay" aria-hidden="true">
     <div class="applepay-sheet" role="dialog" aria-modal="true" aria-label="Apple Pay">
-  
+
       <div class="applepay-header">
         <div class="applepay-logo">Pay</div>
-  
+
         <button class="applepay-close" id="applePayCloseBtn" type="button" aria-label="Close Apple Pay">
           ×
         </button>
       </div>
-  
+
       <div class="applepay-card">
         <div class="applepay-card-left">
           <div class="applepay-card-icon"></div>
@@ -142,7 +140,7 @@
           <span class="applepay-chevron">›</span>
         </div>
       </div>
-  
+
       <div class="applepay-card">
         <div class="applepay-card-left">
           <div class="applepay-card-title">Change Payment Method</div>
@@ -151,13 +149,13 @@
           <span class="applepay-chevron">›</span>
         </div>
       </div>
-  
+
       <div class="applepay-meta">
         <div class="applepay-company">Company Name</div>
         <div class="applepay-amount">$8.34</div>
         <div class="applepay-info">i</div>
       </div>
-  
+
       <div class="applepay-faceid">
         <div class="faceid-icon" aria-hidden="true">
           <div class="faceid-box"></div>
@@ -165,32 +163,78 @@
         </div>
         <div class="faceid-text">Pay with Face ID</div>
       </div>
-  
+
     </div>
   </div>
 
-  <script>
+  <!-- ✅ MAIN LOGIC (save last order + clear cart + redirect) -->
+  <script type="module">
+    import { getCart, saveLastOrder, clearCart } from "/alpha/js/app.js";
+
     const placeOrderBtn = document.getElementById("placeOrderBtn");
     const applePayOverlay = document.getElementById("applePayOverlay");
     const applePayCloseBtn = document.getElementById("applePayCloseBtn");
-  
+
     placeOrderBtn.addEventListener("click", () => {
       applePayOverlay.classList.add("active");
-  
+
+      // ✅ snapshot the order so confirmation + banner can show it later
+      const cart = getCart();
+      const total = cart.reduce(
+        (sum, item) => sum + (Number(item.price || 0) * (item.qty || 1)),
+        0
+      );
+
+      saveLastOrder({
+        orderNumber: 32,      // keep your static number
+        readyBy: "11:00am",
+        items: cart,
+        total: total
+      });
+
+      // ✅ show confirmation banner later on homepage
+      localStorage.setItem("hasRecentOrder", "true");
+
+      // ✅ clear the cart AFTER order is placed
+      clearCart();
+
+      // go to confirmation after Apple Pay sheet appears
       setTimeout(() => {
         window.location.href = "confirmation.html";
       }, 2000);
     });
-  
+
     applePayCloseBtn.addEventListener("click", () => {
       applePayOverlay.classList.remove("active");
     });
-  
+
     applePayOverlay.addEventListener("click", (e) => {
       if (e.target === applePayOverlay) {
         applePayOverlay.classList.remove("active");
       }
     });
   </script>
+
+  <!-- ✅ Active states (payment + tips) -->
+  <script>
+    // Payment selection
+    const paymentOptions = document.querySelectorAll(".payment-option");
+    paymentOptions.forEach(option => {
+      option.addEventListener("click", () => {
+        paymentOptions.forEach(o => o.classList.remove("is-selected"));
+        option.classList.add("is-selected");
+      });
+    });
+
+    // Tip selection
+    const tipBoxes = document.querySelectorAll(".tip-box");
+    tipBoxes.forEach(box => {
+      box.addEventListener("click", () => {
+        tipBoxes.forEach(b => b.classList.remove("is-selected"));
+        box.classList.add("is-selected");
+      });
+    });
+  </script>
+
 </body>
 </html>

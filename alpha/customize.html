@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Customize — Egg & Cheese</title>
 
-  <!-- shared homepage CSS -->
+  <!-- shared -->
   <link rel="stylesheet" href="/alpha/css/style.css" />
-
-  <!-- page-specific CSS -->
+  <!-- page specific -->
   <link rel="stylesheet" href="/alpha/css/customize.css" />
 </head>
 
@@ -21,15 +20,18 @@
       <a class="icon-btn" href="index.html" aria-label="Back to menu">‹</a>
 
       <a class="bag-btn" href="bag.html" aria-label="Go to bag">
-        <span class="bag-icon" aria-hidden="true">👜</span>
-        <span class="bag-dot" aria-hidden="true"></span>
+        <img 
+          src="/assets/images/icons/Bag.svg" 
+          alt="Bag" 
+          class="bag-icon"
+        />
+        
       </a>
     </header>
 
     <!-- IMAGE + TEXT GROUP -->
     <section class="item-hero">
       <div class="hero-img-frame">
-        <!-- placeholder for now; replace src with your real image path later -->
         <img class="hero-img" src="/assets/images/menu/bs/egg_cheese.webp" alt="Egg & Cheese sandwich" />
       </div>
 
@@ -42,34 +44,156 @@
       <hr class="divider" />
     </section>
 
-    <!-- DROPDOWNS GROUP -->
-    <section class="options">
-      <!-- each box is “fake dropdown” -->
-      <div class="select-box">
-        <div class="select-row">
-          <p class="select-label">* Bread [select one]</p>
-          <div class="select-icon" aria-hidden="true">⌄</div>
-        </div>
-      </div>
+    <!-- OPTIONS (no-JS accordion) -->
+    <form id="customizeForm" class="options">
 
-      <div class="select-box">
-        <div class="select-row">
-          <p class="select-label">* Meat [select up to two]</p>
-          <div class="select-icon" aria-hidden="true">⌄</div>
-        </div>
-      </div>
+      <!-- Bread -->
+      <details class="acc" open>
+        <summary class="acc-header">
+          <span class="acc-title">* Bread <span class="acc-sub">[select one]</span></span>
+          <span class="acc-caret" aria-hidden="true">⌄</span>
+        </summary>
 
-      <div class="select-box">
-        <div class="select-row">
-          <p class="select-label">* Extra [optional]</p>
-          <div class="select-icon" aria-hidden="true">⌄</div>
+        <div class="acc-panel">
+          <label class="opt">
+            <input class="opt-input" type="radio" name="bread" value="Plain Bagel" required>
+            <span class="opt-text">Plain Bagel</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="bread" value="Everything Bagel" required>
+            <span class="opt-text">Everything Bagel</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="bread" value="White Bread" required>
+            <span class="opt-text">White Bread</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="bread" value="Wheat Bread" required>
+            <span class="opt-text">Wheat Bread</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="bread" value="Croissant" required>
+            <span class="opt-text">Croissant</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="bread" value="Hoagie Roll" required>
+            <span class="opt-text">Hoagie Roll</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
         </div>
-      </div>
-    </section>
+      </details>
+
+      <!-- Toast Level -->
+      <details class="acc">
+        <summary class="acc-header">
+          <span class="acc-title">* Toast Levels <span class="acc-sub">[select one]</span></span>
+          <span class="acc-caret" aria-hidden="true">⌄</span>
+        </summary>
+
+        <div class="acc-panel">
+          <label class="opt">
+            <input class="opt-input" type="radio" name="toast" value="Not toasted" required>
+            <span class="opt-text">Not toasted</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="toast" value="Light" required>
+            <span class="opt-text">Light</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="toast" value="Medium" required>
+            <span class="opt-text">Medium</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="toast" value="Well done" required>
+            <span class="opt-text">Well done</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+        </div>
+      </details>
+
+      <!-- Meat (no JS rule enforcement; user can pick 0–2) -->
+      <details class="acc">
+        <summary class="acc-header">
+          <span class="acc-title">* Meat <span class="acc-sub">[select up to two]</span></span>
+          <span class="acc-caret" aria-hidden="true">⌄</span>
+        </summary>
+
+        <div class="acc-panel">
+          <label class="opt">
+            <input class="opt-input" type="checkbox" name="meat" value="Bacon">
+            <span class="opt-text">Bacon</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="checkbox" name="meat" value="Sausage">
+            <span class="opt-text">Sausage</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="checkbox" name="meat" value="Ham">
+            <span class="opt-text">Ham</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+        </div>
+      </details>
+
+      <!-- Cheese -->
+      <details class="acc">
+        <summary class="acc-header">
+          <span class="acc-title">* Cheese <span class="acc-sub">[select one]</span></span>
+          <span class="acc-caret" aria-hidden="true">⌄</span>
+        </summary>
+
+        <div class="acc-panel">
+          <label class="opt">
+            <input class="opt-input" type="radio" name="cheese" value="American" required>
+            <span class="opt-text">American</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="cheese" value="Cheddar" required>
+            <span class="opt-text">Cheddar</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="cheese" value="Swiss" required>
+            <span class="opt-text">Swiss</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="cheese" value="No cheese" required>
+            <span class="opt-text">No cheese</span>
+            <span class="opt-price">+$0.00</span>
+          </label>
+        </div>
+      </details>
+
+    </form>
 
     <hr class="divider" />
 
-    <!-- TEXTAREA -->
+    <!-- TEXTAREA (optional; not saved unless you want later) -->
     <section class="notes">
       <div class="textarea-box">
         <p class="textarea-text">Please let the kitchen know of any dietary restrictions…</p>
@@ -82,19 +206,81 @@
         <p class="qty-label">Quantity</p>
 
         <div class="qty-controls">
-          <button class="qty-btn" type="button" aria-label="Decrease quantity">−</button>
-          <p class="qty-num">1</p>
-          <button class="qty-btn" type="button" aria-label="Increase quantity">+</button>
+          <button class="qty-btn" type="button" id="qtyDec" aria-label="Decrease quantity">−</button>
+          <p class="qty-num" id="qtyNum">1</p>
+          <button class="qty-btn" type="button" id="qtyInc" aria-label="Increase quantity">+</button>
         </div>
       </div>
     </section>
 
-    <!-- ADD TO BAG BUTTON -->
+    <!-- ADD TO BAG -->
     <section class="cta">
-      <a class="add-to-bag" href="bag.html">Add to Bag</a>
+      <button class="add-to-bag" id="addToBagBtn" type="button">Add to Bag</button>
     </section>
 
   </main>
+
+  <script type="module">
+    import { addToCart } from "/alpha/js/app.js";
+  
+    let qty = 1;
+    const qtyNum = document.querySelector("[data-qty-num]");
+    const dec = document.querySelector(".qty-btn[aria-label='Decrease quantity']");
+    const inc = document.querySelector(".qty-btn[aria-label='Increase quantity']");
+    const btn = document.getElementById("addToBagBtn");
+  
+    function getSelectedValue(name, fallback = "") {
+      const picked = document.querySelector(`input[name="${name}"]:checked`);
+      return picked ? picked.value : fallback;
+    }
+  
+    dec.addEventListener("click", () => {
+      qty = Math.max(1, qty - 1);
+      qtyNum.textContent = String(qty);
+    });
+  
+    inc.addEventListener("click", () => {
+      qty = qty + 1;
+      qtyNum.textContent = String(qty);
+    });
+  
+    btn.addEventListener("click", () => {
+  
+      // Get selections (NO validation required)
+      const bread = getSelectedValue("breadOption", "Kaiser Roll");
+      const meat = getSelectedValue("meatOption", "");
+      const extra = getSelectedValue("extraOption", "");
+  
+      // Build subtitle cleanly
+      let subtitleParts = [];
+  
+      if (bread) subtitleParts.push(bread);
+      if (meat) subtitleParts.push(meat);
+      if (extra) subtitleParts.push(extra);
+  
+      const subtitle = subtitleParts.length > 0
+        ? subtitleParts.join(" • ")
+        : "";
+  
+      addToCart({
+        id: "egg_cheese",
+        name: "Egg & Cheese",
+        subtitle: subtitle,
+        price: 6.00,
+        img: "/assets/images/menu/bs/egg_cheese.webp",
+        editHref: "customize.html",
+        qty: qty,
+        options: { bread, meat, extra }
+      });
+  
+      // Smooth slide out
+      document.body.classList.add("page-exit");
+  
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 520);
+    });
+  </script>
 
 </body>
 </html>
