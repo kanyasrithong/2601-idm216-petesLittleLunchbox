@@ -419,3 +419,37 @@
     font-size: 18px;
     color: #000;
   }
+
+
+  /* =========================
+   SELECTABLE STATES
+   ========================= */
+
+/* payment options clickable */
+.payment-option{
+    cursor: pointer;
+    transition: background 180ms ease, transform 120ms ease;
+  }
+  
+  .payment-option:active{
+    transform: scale(0.99);
+  }
+  
+  /* selected state */
+  .payment-option.is-selected{
+    background: #F6F1BF; /* same as ASAP selected */
+  }
+  
+  /* tip boxes clickable */
+  .tip-box{
+    cursor: pointer;
+    transition: background 180ms ease, transform 120ms ease;
+  }
+  
+  .tip-box:active{
+    transform: scale(0.98);
+  }
+  
+  .tip-box.is-selected{
+    background: #F6F1BF;
+  }

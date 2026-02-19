@@ -25,24 +25,6 @@
     width: 100%;
   }
   
-  /* back button (simple placeholder) */
-  .icon-btn{
-    width: 32px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    border-radius: 8px;
-    border: 1px solid #45371F;
-    background: #F6F1BF;
-  
-    text-decoration: none;
-    color: #45371F;
-    font-size: 20px;
-    line-height: 1;
-  }
-  
   /* bag icon with dot */
   .bag-btn{
     position: relative;
@@ -82,8 +64,6 @@
   
     border-radius: 8px;
     border: 1px solid #B9AC19;
-    
-  
     overflow: hidden;
   }
   
@@ -110,7 +90,6 @@
     font-size: 24px;
     font-weight: 700;
     letter-spacing: 0.48px;
-    line-height: normal;
   }
   
   .item-desc{
@@ -120,7 +99,6 @@
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 0.84px;
-    line-height: normal;
   }
   
   .item-price{
@@ -130,7 +108,6 @@
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.72px;
-    line-height: normal;
   }
   
   /* divider line */
@@ -141,33 +118,42 @@
     margin: 8px 0;
   }
   
-  /* ---------- dropdown group ---------- */
+  /* ---------- OPTIONS (Accordion) ---------- */
   .options{
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
   
-  /* single dropdown box */
-  .select-box{
+  /* accordion container */
+  .acc{
     width: 100%;
     border-radius: 8px;
     border: 1px solid #B7C33A;
     background: transparent;
+    overflow: hidden;
+  }
+  
+  /* remove default marker */
+  .acc > summary{
+    list-style: none;
+  }
+  .acc > summary::-webkit-details-marker{
+    display: none;
+  }
+  
+  /* header row */
+  .acc-header{
     padding: 16px;
-  }
-  
-  /* row inside dropdown */
-  .select-row{
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
+    cursor: pointer;
   }
   
-  .select-label{
-    margin: 0;
+  .acc-title{
     color: #45371F;
     font-family: "Karla", system-ui, sans-serif;
     font-size: 16px;
@@ -175,12 +161,15 @@
     letter-spacing: -0.96px;
   }
   
-  /* circle arrow */
-  .select-icon{
+  .acc-sub{
+    font-weight: 700;
+  }
+  
+  /* caret bubble (matches your circle icon vibe) */
+  .acc-caret{
     width: 24px;
     height: 24px;
     padding: 2px;
-  
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,6 +181,64 @@
     font-size: 14px;
     line-height: 1;
     flex-shrink: 0;
+  
+    transition: transform 220ms ease;
+  }
+  
+  .acc[open] .acc-caret{
+    transform: rotate(180deg);
+  }
+  
+  /* panel area */
+  .acc-panel{
+    padding: 0 16px 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns like your example */
+    gap: 10px;
+  }
+  
+  /* option card (text-only) */
+  .opt{
+    border-radius: 8px;
+    border: 1px solid #45371F;
+    background: rgba(255,255,255,0.25);
+    padding: 14px 12px;
+  
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  /* hide the native input */
+  .opt-input{
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .opt-text{
+    color: #45371F;
+    font-family: Satoshi, system-ui, "Karla", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.28px;
+  }
+  
+  .opt-price{
+    color: #45371F;
+    font-family: Satoshi, system-ui, "Karla", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.28px;
+  }
+  
+  /* selected state */
+  .opt:has(.opt-input:checked){
+    background: #F2D4C9;
+    border-width: 2px;
   }
   
   /* ---------- textarea ---------- */
@@ -219,7 +266,6 @@
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 0.28px;
-    line-height: normal;
   }
   
   /* ---------- quantity ---------- */
@@ -296,12 +342,12 @@
     border-radius: 10px;
     background: #252203;
   
-    text-decoration: none;
+    border: none;
+    cursor: pointer;
   
     color: #CBDF88;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
     font-size: 16px;
     font-weight: 500;
     letter-spacing: 0.32px;
-    line-height: normal;
   }

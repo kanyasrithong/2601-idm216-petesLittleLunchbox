@@ -18,9 +18,74 @@
     font-family: "Karla", system-ui, sans-serif;
   }
   
+
+  /* =========================
+   ORDER CONFIRMATION BANNER
+   ========================= */
+
+.order-banner{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    padding: 14px 16px;
+    border-radius: 10px;
+    /* =========================
+   ORDER BANNER (Homepage)
+   ========================= */
+
+.order-banner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    margin: 16px 20px 12px;   /* left/right spacing + smaller bottom gap */
+    padding: 14px 16px;
+  
+    border-radius: 12px;
+    border: 1px solid #252203;
+    background: #F6F1BF;
+  
+    text-decoration: none;
+    color: #252203;
+  
+    font-family: Satoshi, system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .order-banner-text{
+    margin: 0;
+  }
+  
+  .order-banner-arrow{
+    font-size: 18px;
+  }
+  
+    background: #F6F1BF;  /* same selected tone as ASAP */
+    border: 1px solid #252203;
+  
+    text-decoration: none;
+    color: #252203;
+  
+    font-family: Satoshi, system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+  
+  .order-banner-text{
+    flex: 1;
+  }
+  
+  .order-banner-arrow{
+    font-size: 18px;
+  }
+
   /* ---------- HEADER ---------- */
   .top{
-    padding: 98px 20px 0;
+    padding: 30px 20px 0;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -264,4 +329,93 @@
 
   body {
     padding-bottom: 90px;
+  }
+
+
+  /* ===== Bag badge ===== */
+.nav-item {
+    position: relative;
+  }
+  
+  .nav-badge {
+    position: absolute;
+    top: -4px;
+    right: 14px;
+  
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+  
+    border-radius: 999px;
+    background: #F1513B;
+    color: #fff;
+  
+    font-family: "Karla", system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+  
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav-badge.is-visible {
+    display: flex;
+  }
+  
+  /* quick microinteraction */
+  .nav-badge.pulse {
+    animation: badgePulse 0.35s ease;
+  }
+  
+  @keyframes badgePulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.18); }
+    100% { transform: scale(1); }
+  }
+  
+  /* utility */
+  .hidden { display: none !important; }
+
+  /* ===== Bag badge (on bottom nav icon) ===== */
+.nav-icon-wrap{
+    position: relative;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .nav-badge{
+    position: absolute;
+    top: -6px;
+    right: -8px;
+  
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    border-radius: 999px;
+    background: #F1513B;
+    color: #fff;
+  
+    font-family: Satoshi, system-ui, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  
+  .nav-badge.is-hidden{ display:none; }
+  
+  @keyframes badgePulse {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.25); }
+    60%  { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+  
+  .nav-badge.pulse{
+    animation: badgePulse 420ms ease;
   }
