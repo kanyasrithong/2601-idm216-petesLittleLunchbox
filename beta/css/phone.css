@@ -1,0 +1,66 @@
+/* =========================
+   PHONE PAGE
+   ========================= */
+
+   .phone{
+    background: #FBF6E9;
+    color: #45371F;
+  }
+  
+  .phone-page{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  
+    /* similar to your other pages */
+    padding: 56px 20px 30px;
+  }
+  
+  /* top bar */
+  .phone-topbar{
+    width: 100%;
+  }
+  
+  /* title area */
+  .phone-hero{
+    margin-top: 60px; 
+  }
+  
+  .phone-title{
+    margin: 0;
+    color: #252203;
+    font-family: "Karla", system-ui, sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -1.92px;
+    line-height: 36px;
+  }
+  
+  /* input + button pinned near bottom */
+  .phone-form{
+    width: 100%;
+    margin-top: auto;  /* pushes this section to bottom */
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  /* input style */
+  .phone-input{
+    width: 100%;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #45371F;
+    background: transparent;
+  
+    font-family: Satoshi, system-ui, "Karla", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.28px;
+    color: #45371F;
+  }
+  
+  .phone-input::placeholder{
+    color: rgba(69, 55, 31, 0.55);
+  }

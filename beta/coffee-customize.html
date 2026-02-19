@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Customize — Coffee</title>
+
+  <!-- shared -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- page specific -->
+   <link rel="stylesheet" href="css/customize.css" />
+  <link rel="stylesheet" href="css/coffee-customize.css" />
+</head>
+
+<body class="customize">
+
+  <main class="customize-page">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <a class="icon-btn" href="index.html" aria-label="Back to menu">‹</a>
+      <a class="bag-btn" href="bag.html" aria-label="Go to bag">
+        <img 
+          src="../assets/images/icons/Bag.svg" 
+          alt="Bag" 
+          class="bag-icon"
+        />
+      </a>
+    </header>
+
+    <!-- IMAGE + TEXT GROUP -->
+    <section class="item-hero">
+      <div class="hero-img-frame">
+        <img class="hero-img" src="../assets/images/menu/drinks/coffee.webp" alt="Coffee" />
+      </div>
+
+      <div class="item-text">
+        <h1 class="item-title">Coffee</h1>
+        <p class="item-desc">Fresh brewed coffee, served hot.</p>
+        <p class="item-price">$2.00</p>
+      </div>
+
+      <hr class="divider" />
+    </section>
+
+    <!-- OPTIONS (Size only) -->
+    <section class="options">
+
+      <details class="accordion" open>
+        <summary class="accordion-summary">
+          <span class="select-label">* Size [select one]</span>
+          <span class="select-icon" aria-hidden="true">⌄</span>
+        </summary>
+
+        <div class="accordion-panel">
+          <div class="choice-list" role="radiogroup" aria-label="Coffee size">
+            <label class="choice">
+              <input class="choice-input" type="radio" name="coffeeSize" value="Small" checked>
+              <span class="choice-text">Small</span>
+            </label>
+
+            <label class="choice">
+              <input class="choice-input" type="radio" name="coffeeSize" value="Large">
+              <span class="choice-text">Large</span>
+            </label>
+          </div>
+        </div>
+      </details>
+
+    </section>
+
+    <hr class="divider" />
+
+    <!-- QUANTITY BAR -->
+    <section class="qty">
+      <div class="qty-bar">
+        <p class="qty-label">Quantity</p>
+
+        <div class="qty-controls">
+          <button class="qty-btn" id="qtyDec" type="button" aria-label="Decrease quantity">−</button>
+          <p class="qty-num" id="qtyNum">1</p>
+          <button class="qty-btn" id="qtyInc" type="button" aria-label="Increase quantity">+</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADD TO BAG BUTTON -->
+    <section class="cta">
+      <button class="add-to-bag" id="addCoffeeBtn" type="button">Add to Bag</button>
+    </section>
+
+  </main>
+
+  <script type="module">
+    import { addToCart } from "js/app.js";
+
+    let qty = 1;
+    const qtyNum = document.getElementById("qtyNum");
+    const dec = document.getElementById("qtyDec");
+    const inc = document.getElementById("qtyInc");
+    const btn = document.getElementById("addCoffeeBtn");
+
+    function getSelectedSize(){
+      const picked = document.querySelector('input[name="coffeeSize"]:checked');
+      return picked ? picked.value : "Small";
+    }
+
+    dec.addEventListener("click", () => {
+      qty = Math.max(1, qty - 1);
+      qtyNum.textContent = String(qty);
+    });
+
+    inc.addEventListener("click", () => {
+      qty = qty + 1;
+      qtyNum.textContent = String(qty);
+    });
+
+    btn.addEventListener("click", () => {
+      const size = getSelectedSize();
+
+      addToCart({
+        id: "coffee",
+        name: "Coffee",
+        subtitle: `Size: ${size}`,
+        price: 2.00,
+        img: "assets/images/menu/drinks/coffee.webp",
+        editHref: "coffee-customize.html",
+        qty: qty,
+        options: { size }
+      });
+
+      // slide out then go home
+      document.body.classList.add("page-exit");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 520);
+    });
+  </script>
+
+</body>
+</html>
