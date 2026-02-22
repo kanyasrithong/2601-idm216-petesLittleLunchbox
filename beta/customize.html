@@ -93,39 +93,7 @@
         </div>
       </details>
 
-      <!-- Toast Level -->
-      <details class="acc">
-        <summary class="acc-header">
-          <span class="acc-title">* Toast Levels <span class="acc-sub">[select one]</span></span>
-          <span class="acc-caret" aria-hidden="true">⌄</span>
-        </summary>
-
-        <div class="acc-panel">
-          <label class="opt">
-            <input class="opt-input" type="radio" name="toast" value="Not toasted" required>
-            <span class="opt-text">Not toasted</span>
-            <span class="opt-price">+$0.00</span>
-          </label>
-
-          <label class="opt">
-            <input class="opt-input" type="radio" name="toast" value="Light" required>
-            <span class="opt-text">Light</span>
-            <span class="opt-price">+$0.00</span>
-          </label>
-
-          <label class="opt">
-            <input class="opt-input" type="radio" name="toast" value="Medium" required>
-            <span class="opt-text">Medium</span>
-            <span class="opt-price">+$0.00</span>
-          </label>
-
-          <label class="opt">
-            <input class="opt-input" type="radio" name="toast" value="Well done" required>
-            <span class="opt-text">Well done</span>
-            <span class="opt-price">+$0.00</span>
-          </label>
-        </div>
-      </details>
+      
 
       <!-- Meat (no JS rule enforcement; user can pick 0–2) -->
       <details class="acc">
@@ -155,40 +123,7 @@
         </div>
       </details>
 
-      <!-- Cheese -->
-      <details class="acc">
-        <summary class="acc-header">
-          <span class="acc-title">* Cheese <span class="acc-sub">[select one]</span></span>
-          <span class="acc-caret" aria-hidden="true">⌄</span>
-        </summary>
-
-        <div class="acc-panel">
-          <label class="opt">
-            <input class="opt-input" type="radio" name="cheese" value="American" required>
-            <span class="opt-text">American</span>
-            <span class="opt-price">+$0.00</span>
-          </label>
-
-          <label class="opt">
-            <input class="opt-input" type="radio" name="cheese" value="Cheddar" required>
-            <span class="opt-text">Cheddar</span>
-            <span class="opt-price">+$0.00</span>
-          </label>
-
-          <label class="opt">
-            <input class="opt-input" type="radio" name="cheese" value="Swiss" required>
-            <span class="opt-text">Swiss</span>
-            <span class="opt-price">+$0.00</span>
-          </label>
-
-          <label class="opt">
-            <input class="opt-input" type="radio" name="cheese" value="No cheese" required>
-            <span class="opt-text">No cheese</span>
-            <span class="opt-price">+$0.00</span>
-          </label>
-        </div>
-      </details>
-
+      
     </form>
 
     <hr class="divider" />
@@ -221,17 +156,22 @@
   </main>
 
   <script type="module">
-    import { addToCart } from "/alpha/js/app.js";
+    import { addToCart } from "./js/app.js";
   
     let qty = 1;
-    const qtyNum = document.querySelector("[data-qty-num]");
-    const dec = document.querySelector(".qty-btn[aria-label='Decrease quantity']");
-    const inc = document.querySelector(".qty-btn[aria-label='Increase quantity']");
+    const qtyNum = document.getElementById("qtyNum");
+    const dec = document.getElementById("qtyDec");
+    const inc = document.getElementById("qtyInc");
     const btn = document.getElementById("addToBagBtn");
   
-    function getSelectedValue(name, fallback = "") {
-      const picked = document.querySelector(`input[name="${name}"]:checked`);
-      return picked ? picked.value : fallback;
+    function getBread() {
+      const picked = document.querySelector('input[name="bread"]:checked');
+      return picked ? picked.value : "";
+    }
+  
+    function getMeats() {
+      return Array.from(document.querySelectorAll('input[name="meat"]:checked'))
+        .map(x => x.value);
     }
   
     dec.addEventListener("click", () => {
@@ -245,37 +185,25 @@
     });
   
     btn.addEventListener("click", () => {
+      const bread = getBread() || "Kaiser Roll";
+      const meats = getMeats();
   
-      // Get selections (NO validation required)
-      const bread = getSelectedValue("breadOption", "Kaiser Roll");
-      const meat = getSelectedValue("meatOption", "");
-      const extra = getSelectedValue("extraOption", "");
-  
-      // Build subtitle cleanly
-      let subtitleParts = [];
-  
-      if (bread) subtitleParts.push(bread);
-      if (meat) subtitleParts.push(meat);
-      if (extra) subtitleParts.push(extra);
-  
-      const subtitle = subtitleParts.length > 0
-        ? subtitleParts.join(" • ")
-        : "";
+      const subtitleParts = [bread];
+      if (meats.length) subtitleParts.push(meats.join(", "));
+      const subtitle = subtitleParts.join(" • ");
   
       addToCart({
         id: "egg_cheese",
         name: "Egg & Cheese",
-        subtitle: subtitle,
+        subtitle,
         price: 6.00,
         img: "../assets/images/menu/bs/egg_cheese.webp",
         editHref: "customize.html",
-        qty: qty,
-        options: { bread, meat, extra }
+        qty,
+        options: { bread, meats }
       });
   
-      // Smooth slide out
       document.body.classList.add("page-exit");
-  
       setTimeout(() => {
         window.location.href = "index.html";
       }, 520);
