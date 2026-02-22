@@ -7,6 +7,32 @@
 
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/payment.css" />
+
+  <!-- tiny helper styles just for the custom tip input -->
+  <style>
+    .tip-box.custom .custom-tip-input-wrap{
+      display: none;
+      width: 100%;
+      margin-top: 8px;
+    }
+    .tip-box.custom.is-selected .custom-tip-input-wrap{
+      display: flex;
+      justify-content: center;
+    }
+    .custom-tip-input{
+      width: 100%;
+      max-width: 120px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #B9AC19;
+      background: #FBF6E9;
+      font-family: Satoshi, system-ui, "Karla", sans-serif;
+      font-size: 14px;
+      color: #45371F;
+      outline: none;
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body class="payment">
@@ -24,7 +50,7 @@
     <!-- payment methods -->
     <section class="payment-methods">
 
-      <div class="payment-option">
+      <div class="payment-option is-selected">
         <img class="payment-icon" src="../assets/images/icons/debit.png" alt="Card" />
         <span class="payment-text">Debit/Credit Card</span>
       </div>
@@ -54,23 +80,37 @@
       <h2 class="tip-title">Add Tip?</h2>
 
       <div class="tip-row">
-        <div class="tip-box">
+        <div class="tip-box" data-tip-percent="10">
           <p class="tip-percent">10%</p>
-          <p class="tip-amount">$0.70</p>
+          <p class="tip-amount" id="tip10Text">$0.00</p>
         </div>
 
-        <div class="tip-box">
+        <div class="tip-box" data-tip-percent="15">
           <p class="tip-percent">15%</p>
-          <p class="tip-amount">$1.05</p>
+          <p class="tip-amount" id="tip15Text">$0.00</p>
         </div>
 
-        <div class="tip-box">
+        <div class="tip-box" data-tip-percent="20">
           <p class="tip-percent">20%</p>
-          <p class="tip-amount">$1.40</p>
+          <p class="tip-amount" id="tip20Text">$0.00</p>
         </div>
 
-        <div class="tip-box">
+        <!-- Custom tip box -->
+        <div class="tip-box custom" data-tip-custom="1">
           <p class="tip-percent">Custom</p>
+
+          <div class="custom-tip-input-wrap">
+            <input
+              id="customTipInput"
+              class="custom-tip-input"
+              type="number"
+              min="0"
+              step="0.01"
+              inputmode="decimal"
+              placeholder="$"
+              aria-label="Custom tip amount in dollars"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -78,33 +118,25 @@
     <!-- dashed pink divider -->
     <div class="divider-pink" aria-hidden="true"></div>
 
-    <!-- summary (static display is fine for now) -->
+    <!-- summary (NOW MATCHES CART) -->
     <section class="summary">
 
-      <div class="summary-row">
-        <div class="summary-left">
-          <p class="summary-bold">1x Egg &amp; Cheese</p>
-          <p class="summary-bold">+Bacon</p>
-        </div>
-        <div class="summary-right">
-          <p class="summary-bold">$6.00</p>
-          <p class="summary-bold">$1.00</p>
-        </div>
-      </div>
+      <!-- JS will render item lines here -->
+      <div id="summaryItems"></div>
 
       <div class="summary-row">
-        <p class="summary-regular">Tip (0%)</p>
-        <p class="summary-regular">$0.00</p>
+        <p class="summary-regular" id="tipLabel">Tip (0%)</p>
+        <p class="summary-regular" id="tipValue">$0.00</p>
       </div>
 
       <div class="summary-row">
         <p class="summary-regular">Tax</p>
-        <p class="summary-regular">$1.34</p>
+        <p class="summary-regular" id="taxValue">$1.34</p>
       </div>
 
       <div class="summary-row total-row">
         <p class="total-label">Total</p>
-        <p class="total-amount">$8.34</p>
+        <p class="total-amount" id="totalAmount">$0.00</p>
       </div>
 
     </section>
@@ -152,7 +184,7 @@
 
       <div class="applepay-meta">
         <div class="applepay-company">Company Name</div>
-        <div class="applepay-amount">$8.34</div>
+        <div class="applepay-amount" id="applePayAmount">$0.00</div>
         <div class="applepay-info">i</div>
       </div>
 
@@ -167,38 +199,192 @@
     </div>
   </div>
 
-  <!-- ✅ MAIN LOGIC (save last order + clear cart + redirect) -->
+  <!-- ✅ Main logic -->
   <script type="module">
     import { getCart, saveLastOrder, clearCart } from "./js/app.js";
+
+    const TAX = 1.34; // keep your demo tax
 
     const placeOrderBtn = document.getElementById("placeOrderBtn");
     const applePayOverlay = document.getElementById("applePayOverlay");
     const applePayCloseBtn = document.getElementById("applePayCloseBtn");
 
+    const summaryItems = document.getElementById("summaryItems");
+    const tipLabel = document.getElementById("tipLabel");
+    const tipValue = document.getElementById("tipValue");
+    const taxValue = document.getElementById("taxValue");
+    const totalAmount = document.getElementById("totalAmount");
+    const applePayAmount = document.getElementById("applePayAmount");
+
+    const tip10Text = document.getElementById("tip10Text");
+    const tip15Text = document.getElementById("tip15Text");
+    const tip20Text = document.getElementById("tip20Text");
+    const customTipInput = document.getElementById("customTipInput");
+
+    function subtotalFromCart(cart){
+      return cart.reduce((sum, item) => sum + (Number(item.price || 0) * (item.qty || 1)), 0);
+    }
+
+    function renderCartSummary(cart){
+      if (!summaryItems) return;
+
+      if (!cart || cart.length === 0){
+        summaryItems.innerHTML = `
+          <div class="summary-row">
+            <p class="summary-regular">Your cart is empty</p>
+            <p class="summary-regular">$0.00</p>
+          </div>
+        `;
+        return;
+      }
+
+      summaryItems.innerHTML = cart.map(item => {
+        const name = item.name || "Item";
+        const subtitle = item.subtitle ? String(item.subtitle) : "";
+        const qty = Number(item.qty || 1);
+        const price = Number(item.price || 0);
+        const lineTotal = price * qty;
+
+        return `
+          <div class="summary-row">
+            <div class="summary-left">
+              <p class="summary-bold">${qty}x ${escapeHtml(name)}</p>
+              ${subtitle ? `<p class="summary-bold">${escapeHtml(subtitle)}</p>` : ``}
+            </div>
+            <div class="summary-right">
+              <p class="summary-bold">$${lineTotal.toFixed(2)}</p>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function getSelectedTipMode(){
+      const selected = document.querySelector(".tip-box.is-selected");
+      if (!selected) return { type: "percent", value: 0 };
+
+      if (selected.dataset.tipCustom === "1"){
+        const v = Number(customTipInput?.value || 0);
+        return { type: "custom", value: Math.max(0, v) };
+      }
+
+      const p = Number(selected.dataset.tipPercent || 0);
+      return { type: "percent", value: Math.max(0, p) };
+    }
+
+    function renderTipBoxAmounts(subtotal){
+      if (tip10Text) tip10Text.textContent = `$${(subtotal * 0.10).toFixed(2)}`;
+      if (tip15Text) tip15Text.textContent = `$${(subtotal * 0.15).toFixed(2)}`;
+      if (tip20Text) tip20Text.textContent = `$${(subtotal * 0.20).toFixed(2)}`;
+    }
+
+    function renderTotals(){
+      const cart = getCart();
+      const subtotal = subtotalFromCart(cart);
+      renderTipBoxAmounts(subtotal);
+
+      const mode = getSelectedTipMode();
+      const tip = (mode.type === "custom")
+        ? mode.value
+        : subtotal * (mode.value / 100);
+
+      const total = subtotal + tip + TAX;
+
+      if (taxValue) taxValue.textContent = `$${TAX.toFixed(2)}`;
+      if (tipValue) tipValue.textContent = `$${tip.toFixed(2)}`;
+
+      if (tipLabel){
+        if (mode.type === "custom") tipLabel.textContent = `Tip (Custom)`;
+        else tipLabel.textContent = `Tip (${mode.value}%)`;
+      }
+
+      if (totalAmount) totalAmount.textContent = `$${total.toFixed(2)}`;
+      if (applePayAmount) applePayAmount.textContent = `$${total.toFixed(2)}`;
+    }
+
+    // INITIAL RENDER
+    const cartInit = getCart();
+    renderCartSummary(cartInit);
+    taxValue.textContent = `$${TAX.toFixed(2)}`;
+
+    // default: no tip selected
+    renderTotals();
+
+    // TIP SELECTION (and custom input behavior)
+    const tipBoxes = document.querySelectorAll(".tip-box");
+    tipBoxes.forEach(box => {
+      box.addEventListener("click", () => {
+        tipBoxes.forEach(b => b.classList.remove("is-selected"));
+        box.classList.add("is-selected");
+
+        // if custom selected, focus input
+        if (box.dataset.tipCustom === "1" && customTipInput){
+          customTipInput.focus();
+        }
+
+        renderTotals();
+      });
+    });
+
+    if (customTipInput){
+      customTipInput.addEventListener("input", () => {
+        // if they type, ensure custom is selected
+        const customBox = document.querySelector('.tip-box[data-tip-custom="1"]');
+        if (customBox && !customBox.classList.contains("is-selected")){
+          document.querySelectorAll(".tip-box").forEach(b => b.classList.remove("is-selected"));
+          customBox.classList.add("is-selected");
+        }
+        renderTotals();
+      });
+    }
+
+    // PAYMENT SELECTION (styling only)
+    const paymentOptions = document.querySelectorAll(".payment-option");
+    paymentOptions.forEach(option => {
+      option.addEventListener("click", () => {
+        paymentOptions.forEach(o => o.classList.remove("is-selected"));
+        option.classList.add("is-selected");
+      });
+    });
+
+    // PLACE ORDER
     placeOrderBtn.addEventListener("click", () => {
       applePayOverlay.classList.add("active");
 
-      // ✅ snapshot the order so confirmation + banner can show it later
       const cart = getCart();
-      const total = cart.reduce(
-        (sum, item) => sum + (Number(item.price || 0) * (item.qty || 1)),
-        0
-      );
+      const subtotal = subtotalFromCart(cart);
+
+      const mode = getSelectedTipMode();
+      const tip = (mode.type === "custom")
+        ? mode.value
+        : subtotal * (mode.value / 100);
+
+      const total = subtotal + tip + TAX;
 
       saveLastOrder({
-        orderNumber: 32,      // keep your static number
+        orderNumber: 32,
         readyBy: "11:00am",
         items: cart,
-        total: total
+        subtotal,
+        tipType: mode.type,
+        tipValue: mode.value,
+        tip,
+        tax: TAX,
+        total
       });
 
-      // ✅ show confirmation banner later on homepage
-      localStorage.setItem("hasRecentOrder", "true");
-
-      // ✅ clear the cart AFTER order is placed
+      // clear cart AFTER placing order
       clearCart();
 
-      // go to confirmation after Apple Pay sheet appears
       setTimeout(() => {
         window.location.href = "confirmation.html";
       }, 2000);
@@ -214,27 +400,5 @@
       }
     });
   </script>
-
-  <!-- ✅ Active states (payment + tips) -->
-  <script>
-    // Payment selection
-    const paymentOptions = document.querySelectorAll(".payment-option");
-    paymentOptions.forEach(option => {
-      option.addEventListener("click", () => {
-        paymentOptions.forEach(o => o.classList.remove("is-selected"));
-        option.classList.add("is-selected");
-      });
-    });
-
-    // Tip selection
-    const tipBoxes = document.querySelectorAll(".tip-box");
-    tipBoxes.forEach(box => {
-      box.addEventListener("click", () => {
-        tipBoxes.forEach(b => b.classList.remove("is-selected"));
-        box.classList.add("is-selected");
-      });
-    });
-  </script>
-
 </body>
 </html>
