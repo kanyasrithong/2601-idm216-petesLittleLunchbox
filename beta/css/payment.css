@@ -101,7 +101,7 @@
   .tip-row{
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: 8px;
     margin: 16px 0;
   }
@@ -118,6 +118,7 @@
     padding: 16px;
     border-radius: 8px;
     border: 1px solid #B9AC19;
+    height: auto;
   }
   
   .tip-percent{

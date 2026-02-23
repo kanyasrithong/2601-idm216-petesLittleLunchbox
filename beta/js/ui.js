@@ -145,9 +145,13 @@ import {
                   <a class="edit-btn" href="${item.editHref || "customize.html"}">EDIT ✎</a>
   
                   <div class="qty-controls">
-                    <button class="qty-btn" type="button" data-action="dec" aria-label="Decrease quantity">−</button>
+                    <button class="qty-btn" type="button" data-action="dec" aria-label="Decrease quantity">
+                      <img src="../assets/images/icons/Minus.svg" alt="Subtract">
+                    </button>
                     <p class="qty-num">${item.qty}</p>
-                    <button class="qty-btn" type="button" data-action="inc" aria-label="Increase quantity">+</button>
+                    <button class="qty-btn" type="button" data-action="inc" aria-label="Increase quantity">
+                      <img src="../assets/images/icons/Plus.svg" alt="Add">
+                    </button>
                   </div>
                 </div>
               </div>

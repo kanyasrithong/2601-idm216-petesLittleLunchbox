@@ -36,6 +36,8 @@
       <th>id</th>
       <th>category_id</th>
       <th>item_name</th>
+      <th>base_price</th>
+      <th>description</th>
       <th>img_url</th>
     </tr>
     <?php
@@ -44,6 +46,8 @@
           <td><?= $item['id'] ?></td>
           <td><?= $item['category_id'] ?></td>
           <td><?= $item['item_name'] ?></td>
+          <td><?= $item['base_price'] ?></td>
+          <td><?= $item['description'] ?></td>
           <td><img src="assets/images/<?= $item['img_url'] ?>" alt=""></td>
         </tr>
     <?php endwhile ?>
@@ -52,18 +56,18 @@
   <table>
     <tr>
       <th>id</th>
-      <th>item_id</th>
+      <th>category_id</th>
       <th>variant_name</th>
-      <th>price</th>
+      <th>add_price</th>
       <th>img_url</th>
     </tr>
     <?php
       while ($variant = $variants_result->fetch_assoc()) : ?>
         <tr>
           <td><?= $variant['id'] ?></td>
-          <td><?= $variant['item_id'] ?></td>
+          <td><?= $variant['category_id'] ?></td>
           <td><?= $variant['variant_name'] ?></td>
-          <td><?= $variant['price'] ?></td>
+          <td><?= $variant['add_price'] ?></td>
           <td><img src="assets/images/<?= $variant['img_url'] ?>" alt=""></td>
         </tr>
     <?php endwhile ?>
@@ -72,18 +76,16 @@
   <table>
     <tr>
       <th>id</th>
-      <th>item_id</th>
-      <th>variant_id</th>
       <th>bs_name</th>
+      <th>add_price</th>
       <th>img_url</th>
     </tr>
     <?php
       while ($bs_variant = $bs_result->fetch_assoc()) : ?>
         <tr>
           <td><?= $bs_variant['id'] ?></td>
-          <td><?= $bs_variant['item_id'] ?></td>
-          <td><?= $bs_variant['variant_id'] ?></td>
           <td><?= $bs_variant['bs_name'] ?></td>
+          <td><?= $bs_variant['add_price'] ?></td>
           <td><img src="assets/images/<?= $bs_variant['img_url'] ?>" alt=""></td>
         </tr>
     <?php endwhile ?>
@@ -97,9 +99,6 @@
       <th>bs_id</th>
       <th>quantity</th>
       <th>unit_price</th>
-      <th>subtotal</th>
-      <th>special_requests</th>
-      <th>tip</th>
     </tr>
     <?php
       while ($order = $order_result->fetch_assoc()) : ?>
@@ -110,9 +109,6 @@
           <td><?= $order['bs_id'] ?></td>
           <td><?= $order['quantity'] ?></td>
           <td><?= $order['unit_price'] ?></td>
-          <td><?= $order['subtotal'] ?></td>
-          <td><?= $order['special_requests'] ?></td>
-          <td><?= $order['tip'] ?></td>
         </tr>
     <?php endwhile ?>
   </table>

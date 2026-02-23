@@ -1,12 +1,9 @@
-/* alpha/js/main.js */
 import { initUI } from "./ui.js";
+import { getLastOrder } from "./app.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initUI();
 });
-
-// alpha/js/main.js
-import { getLastOrder } from "./app.js";
 
 function mountOrderBanner(){
   const banner = document.getElementById("orderBanner");

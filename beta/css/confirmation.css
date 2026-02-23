@@ -48,6 +48,7 @@
     font-family: Satoshi, system-ui, "Karla", sans-serif;
     font-size: 16px;
     letter-spacing: 0.2px;
+    text-decoration: none;
   }
   
   .confirm-pin{
