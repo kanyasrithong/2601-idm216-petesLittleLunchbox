@@ -108,6 +108,7 @@
   }
   
   .pickup-select{
+    height: fit-content;
     width: 100%;
     appearance: none;
     -webkit-appearance: none;
@@ -117,7 +118,7 @@
     background: transparent;
   
     padding: 16px;
-    padding-right: 44px; /* space for chevron */
+    padding-right: 44px;
     border-radius: 8px;
   
     font-family: Satoshi, system-ui, "Karla", sans-serif;

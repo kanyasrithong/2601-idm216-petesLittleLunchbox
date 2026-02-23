@@ -25,7 +25,6 @@
           alt="Bag" 
           class="bag-icon"
         />
-        
       </a>
     </header>
 
@@ -51,7 +50,9 @@
       <details class="acc" open>
         <summary class="acc-header">
           <span class="acc-title">* Bread <span class="acc-sub">[select one]</span></span>
-          <span class="acc-caret" aria-hidden="true">⌄</span>
+          <span class="acc-caret" aria-hidden="true">
+            <img src="../assets/images/icons/Down.svg" alt="Expand">
+          </span>
         </summary>
 
         <div class="acc-panel">
@@ -99,7 +100,9 @@
       <details class="acc">
         <summary class="acc-header">
           <span class="acc-title">* Meat <span class="acc-sub">[select up to two]</span></span>
-          <span class="acc-caret" aria-hidden="true">⌄</span>
+          <span class="acc-caret" aria-hidden="true">
+            <img src="../assets/images/icons/Down.svg" alt="Expand">
+          </span>
         </summary>
 
         <div class="acc-panel">
@@ -128,11 +131,11 @@
 
     <hr class="divider" />
 
-    <!-- TEXTAREA (optional; not saved unless you want later) -->
+    <!-- TEXTAREA -->
     <section class="notes">
-      <div class="textarea-box">
-        <p class="textarea-text">Please let the kitchen know of any dietary restrictions…</p>
-      </div>
+      <form>
+        <textarea class="textarea-box" type="text" placeholder="Please let the kitchen know of any dietary restrictions…"></textarea>
+      </form>
     </section>
 
     <!-- QUANTITY BAR -->
@@ -141,9 +144,13 @@
         <p class="qty-label">Quantity</p>
 
         <div class="qty-controls">
-          <button class="qty-btn" type="button" id="qtyDec" aria-label="Decrease quantity">−</button>
+          <button class="qty-btn" type="button" id="qtyDec" aria-label="Decrease quantity">
+            <img src="../assets/images/icons/Minus.svg" alt="Subtract">
+          </button>
           <p class="qty-num" id="qtyNum">1</p>
-          <button class="qty-btn" type="button" id="qtyInc" aria-label="Increase quantity">+</button>
+          <button class="qty-btn" type="button" id="qtyInc" aria-label="Increase quantity">
+            <img src="../assets/images/icons/Plus.svg" alt="Add">
+          </button>
         </div>
       </div>
     </section>
