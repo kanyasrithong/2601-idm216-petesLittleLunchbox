@@ -75,5 +75,9 @@
     <?php endif ?>
     <input type="submit" value="Add to Bag">
   </form>
+  <?php 
+    var_dump($item['category_id']);
+    var_dump($first_variant['category_id']);
+  ?>
 </body>
 </html>
