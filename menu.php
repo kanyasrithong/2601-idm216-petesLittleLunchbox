@@ -1,8 +1,10 @@
 <?php
   require_once "db.php";
   include "functions/items.php";
+  $items = getItems();
+
   $subtotal = 0;
-  $sales_tax_percent = 0.8;
+  $sales_tax_percent = 0.08;
   $sales_tax = 0;
   $total = 0;
 ?>
@@ -27,8 +29,7 @@
         <th>description</th>
         <th>img_url</th>
       </tr>
-      <?php
-        while ($item = $items_result->fetch_assoc()) : ?>
+      <?php foreach ($items as $item) : ?>
           <tr>
             <td><input type="checkbox" name="order_items[]" value="<?= $item['id'] ?>"></td>
             <td><?= $item['id'] ?></td>
@@ -38,7 +39,7 @@
             <td><?= $item['description'] ?></td>
             <td><img src="assets/images/<?= $item['img_url'] ?>" alt=""></td>
           </tr>
-      <?php endwhile ?>
+      <?php endforeach ?>
     </table>
     <input type="submit" value="Submit">
     <a href="menu.php">Reset</a>

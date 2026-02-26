@@ -4,7 +4,13 @@
   include "functions/items.php";
   include "functions/variants.php";
   include "functions/bs_variants.php";
-  include "functions/order.php";
+  include "functions/orders.php";
+
+  $categories = getCategories();
+  $items = getItems();
+  $variants = getVariants();
+  $bs_variants = getBSVariants();
+  $order = getOrders();
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,13 +28,12 @@
       <th>id</th>
       <th>category_name</th>
     </tr>
-    <?php
-      while ($category = $categories_result->fetch_assoc()) : ?>
+    <?php foreach ($categories as $category) : ?>
         <tr>
           <td><?= $category['id'] ?></td>
           <td><?= $category['category_name'] ?></td>
         </tr>
-    <?php endwhile ?>
+    <?php endforeach ?>
   </table>
   <h1>Menu Items</h1>
   <table>
@@ -40,8 +45,7 @@
       <th>description</th>
       <th>img_url</th>
     </tr>
-    <?php
-      while ($item = $items_result->fetch_assoc()) : ?>
+    <?php foreach ($items as $item) : ?>
         <tr>
           <td><?= $item['id'] ?></td>
           <td><?= $item['category_id'] ?></td>
@@ -50,7 +54,7 @@
           <td><?= $item['description'] ?></td>
           <td><img src="assets/images/<?= $item['img_url'] ?>" alt=""></td>
         </tr>
-    <?php endwhile ?>
+    <?php endforeach ?>
   </table>
   <h1>Item Variants</h1>
   <table>
@@ -61,8 +65,7 @@
       <th>add_price</th>
       <th>img_url</th>
     </tr>
-    <?php
-      while ($variant = $variants_result->fetch_assoc()) : ?>
+    <?php foreach ($variants as $variant) : ?>
         <tr>
           <td><?= $variant['id'] ?></td>
           <td><?= $variant['category_id'] ?></td>
@@ -70,7 +73,7 @@
           <td><?= $variant['add_price'] ?></td>
           <td><img src="assets/images/<?= $variant['img_url'] ?>" alt=""></td>
         </tr>
-    <?php endwhile ?>
+    <?php endforeach ?>
   </table>
   <h1>Breakfast Sandwich Variants</h1>
   <table>
@@ -81,14 +84,14 @@
       <th>img_url</th>
     </tr>
     <?php
-      while ($bs_variant = $bs_result->fetch_assoc()) : ?>
+      foreach ($bs_variants as $bs_variant) : ?>
         <tr>
           <td><?= $bs_variant['id'] ?></td>
           <td><?= $bs_variant['bs_name'] ?></td>
           <td><?= $bs_variant['add_price'] ?></td>
           <td><img src="assets/images/<?= $bs_variant['img_url'] ?>" alt=""></td>
         </tr>
-    <?php endwhile ?>
+    <?php endforeach ?>
   </table>
   <h1>Order Items Store</h1>
   <table>
@@ -101,16 +104,16 @@
       <th>unit_price</th>
     </tr>
     <?php
-      while ($order = $order_result->fetch_assoc()) : ?>
+      foreach ($order as $order_item) : ?>
         <tr>
-          <td><?= $order['id'] ?></td>
-          <td><?= $order['item_id'] ?></td>
-          <td><?= $order['variant_id'] ?></td>
-          <td><?= $order['bs_id'] ?></td>
-          <td><?= $order['quantity'] ?></td>
-          <td><?= $order['unit_price'] ?></td>
+          <td><?= $order_item['id'] ?></td>
+          <td><?= $order_item['item_id'] ?></td>
+          <td><?= $order_item['variant_id'] ?></td>
+          <td><?= $order_item['bs_id'] ?></td>
+          <td><?= $order_item['quantity'] ?></td>
+          <td><?= $order_item['unit_price'] ?></td>
         </tr>
-    <?php endwhile ?>
+    <?php endforeach ?>
   </table>
   </main>
 </body>
