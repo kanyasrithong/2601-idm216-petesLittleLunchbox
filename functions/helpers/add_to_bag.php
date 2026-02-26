@@ -41,4 +41,4 @@
 
   $_SESSION['bag'][] = $bag_item;
 
-  header("Location: ../../main_menu.php");
+  header("Location: ../../menu.php");

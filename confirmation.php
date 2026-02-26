@@ -42,7 +42,7 @@
       <h2>Total: $<?= number_format($total, 2) ?></h2>
     </div>
   </section> 
-  <a href="main_menu.php?clear=true">Start New Order</a>
+  <a href="menu.php?clear=true">Start New Order</a>
 </body>
 
 <!--TODO: store $_SESSION['cart'] contents after this page (or future order ready page with animation) is initialized -->

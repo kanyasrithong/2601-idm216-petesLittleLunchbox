@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body class="order-summary">
-  <a href="main_menu.php">Back</a>
+  <a href="menu.php">Back</a>
   <h1>Bag</h1>
   <section class="bag">
     <?php if (empty($bag)) : ?>

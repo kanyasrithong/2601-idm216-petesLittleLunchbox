@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body class="body-center">
-  <a class="back-button" href="main_menu.php">Back</a>
+  <a class="back-button" href="menu.php">Back</a>
   <img src="assets/images/<?= $item['img_url'] ?>" alt="">
   <h1><?= $item['item_name'] ?></h1>
   <p><?= $item['description'] ?></p>
