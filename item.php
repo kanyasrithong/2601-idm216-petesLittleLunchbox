@@ -44,9 +44,6 @@
         $first_key = array_key_first($variants);
         $first_variant = $variants[$first_key];
 
-        var_dump($item['category_id']);
-        var_dump($first_variant['category_id']);
-
         if ($first_variant['category_id'] === '4') {
           $variant_type = 'size';
         } else {
