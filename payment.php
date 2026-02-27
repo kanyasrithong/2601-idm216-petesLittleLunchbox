@@ -9,6 +9,7 @@
 
   $items = $_SESSION['bag'];
   $subtotal = 0;
+  $variant_total = 0;
   $sales_tax_percent = 0.08;
   $sales_tax = 0;
   $total = 0;
@@ -29,15 +30,16 @@
     <?php foreach ($items as $item) : ?>
       <?php include 'functions/helpers/load_order_item.php' ?>
     <?php endforeach ?>
-  <div class="order-calculations">
-    <h3>Subtotal: $<?= number_format($subtotal, 2) ?></h3>
-    <?php
-      $sales_tax = $subtotal * $sales_tax_percent;
-      $total = $subtotal + $sales_tax;
-    ?>
-    <h3>Sales Tax: $<?= number_format($sales_tax, 2) ?></h3>
-    <h2>Total: $<?= number_format($total, 2) ?></h2>
-    </section>
+    <div class="order-calculations">
+      <?php if ($variant_total != 0) $subtotal += $variant_total; ?>
+      <h3>Subtotal: $<?= number_format($subtotal, 2) ?></h3>
+      <?php
+        $sales_tax = $subtotal * $sales_tax_percent;
+        $total = $subtotal + $sales_tax;
+      ?>
+      <h3>Sales Tax: $<?= number_format($sales_tax, 2) ?></h3>
+      <h2>Total: $<?= number_format($total, 2) ?></h2>
     </div>
+  </section>
   <a href="confirmation.php">Place Order</a>
 </body>

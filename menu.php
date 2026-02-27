@@ -38,6 +38,7 @@
         <article style="padding: 16px; border: 1px solid black;">
           <img src="assets/images/<?= $category_item['img_url'] ?>" alt="<?= $category_item['item_name'] ?>">
           <h3><?= $category_item['item_name'] ?></h3>
+          <p>$<?= $category_item['base_price'] ?></p>
         </article>
       </a>
       <?php endforeach ?>

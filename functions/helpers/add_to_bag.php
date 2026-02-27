@@ -7,7 +7,6 @@
 
   $item = getItemByID(intval($_GET['item_id']));
 
-  $item_total = $item['base_price'];
   $variants = [];
 
   if (isset($_POST['variants'])) {
@@ -23,16 +22,23 @@
 
       // switches reference table column depending on variant type
       $variants[$variant_type] = $variant_type === 'meat' ?
-      $variant['bs_name'] :
-      $variant['variant_name'];
-      $item_total += floatval($variant['add_price']);
+      $variants[$variant_type] = [
+        'id' => $variant_id,
+        'variant_name' => $variant['bs_name'],
+        'add_price' => floatval($variant['add_price'])
+      ] :
+      $variants[$variant_type] = [
+        'id' => $variant_id,
+        'variant_name' => $variant['variant_name'],
+        'add_price' => floatval($variant['add_price'])
+      ];
     }
   }
 
   $bag_item = [
     'id' => uniqid(),
     'item_name' => $item['item_name'],
-    'item_total' => $item_total
+    'item_total' => $item['base_price']
   ];
 
   if (isset($variants)) {

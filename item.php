@@ -44,18 +44,16 @@
         $first_key = array_key_first($variants);
         $first_variant = $variants[$first_key];
 
-        if ($first_variant['category_id'] === '4') {
-          $variant_type = 'size';
-        } else {
-          $variant_type = 'bread';
-        }
+        $first_variant['category_id'] === '4' ?
+        $variant_type = 'size' :
+        $variant_type = 'bread';
        ?>
       <span>*<?= ucfirst($variant_type) ?></span>
       <span>[select one]</span>
       <?php foreach ($variants as $variant) : ?>
         <label>
           <input type="radio" name="variants[<?= $variant_type ?>]" value="<?= $variant['id'] ?>" required>
-          <h3><?= $variant['variant_name'] ?></h3>
+          <h3><?= $variant['variant_name'] ?> [+<?= $variant['add_price'] ?>]</h3>
         </label>
       <?php endforeach ?>
     <?php endif ?>
@@ -68,7 +66,7 @@
       <?php foreach ($bs_variants as $bs_variant) : ?>
         <label>
           <input type="radio" name="variants[meat]" value="<?= $bs_variant['id'] ?>" required>
-          <h3><?= $bs_variant['bs_name'] ?></h3>
+          <h3><?= $bs_variant['bs_name'] ?> [+<?= $bs_variant['add_price'] ?>]</h3>
         </label>
       <?php endforeach ?>
     </fieldset>

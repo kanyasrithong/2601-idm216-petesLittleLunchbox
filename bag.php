@@ -23,6 +23,7 @@
   $current_page = basename($_SERVER['PHP_SELF']);
 
   $bag = $_SESSION['bag'];
+  $variant_total = 0;
   $subtotal = 0;
 ?>
 <!DOCTYPE html>
@@ -46,6 +47,7 @@
       <?php endforeach ?>
     <?php endif; ?>
     <div class="order-calculations">
+      <?php if ($variant_total != 0) $subtotal += $variant_total; ?>
       <h2>Subtotal: $<?= number_format($subtotal, 2) ?></h2>
     </div>
   </section>

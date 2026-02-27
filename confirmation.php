@@ -9,6 +9,7 @@
 
   $items = $_SESSION['bag'];
   $subtotal = 0;
+  $variant_total = 0;
   $sales_tax_percent = 0.08;
   $sales_tax = 0;
   $total = 0;
@@ -33,6 +34,7 @@
       <?php include 'functions/helpers/load_order_item.php' ?>
     <?php endforeach ?>
     <div class="order-calculations">
+      <?php if ($variant_total != 0) $subtotal += $variant_total; ?>
       <h3>Subtotal: $<?= number_format($subtotal, 2) ?></h3>
       <?php
         $sales_tax = $subtotal * $sales_tax_percent;

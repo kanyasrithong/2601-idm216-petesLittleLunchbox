@@ -45,18 +45,6 @@ article {
   }
 }
 
-.item-details {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.bag-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 .bag article {
   border: 1px solid black;
   padding: 1rem;
@@ -118,6 +106,17 @@ input {
 
 .order-summary-row {
   display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.item-row {
+  display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+
+  h3 {
+    margin: 0;
+  }
 }
