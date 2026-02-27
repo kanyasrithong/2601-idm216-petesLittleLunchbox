@@ -1,3 +1,72 @@
+a {
+  color: black;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: black;
+}
+
+img {
+  width: 200px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.card-grid a {
+  display: flex;
+  text-decoration: none;
+
+  article {
+    flex: 1;
+  }
+}
+
+article {
+  h3, h4 {
+    margin: 0.5rem;
+  }
+}
+
+.bag article {
+  border: 1px solid black;
+  padding: 1rem;
+}
+
+.order-calculations {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  border-top: 1px solid black;
+}
+
+.order-number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2, h3 {
+    margin: 4px;
+  }
+}
+
 table {
   border: 1px solid #000000;
   border-collapse: collapse;
@@ -8,24 +77,46 @@ table {
   }
 }
 
-img {
-  width: 200px;
+label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+input {
+  margin: 0;
+}
+
+.back-button {
+  display: block;
 }
 
 .body-center {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin: 1rem 16rem 16rem;
 }
 
 .order-summary {
   display: flex;
   flex-direction: column;
+  margin: 1rem auto auto;
   width: 50vw;
 }
 
 .order-summary-row {
   display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.item-row {
+  display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+
+  h3 {
+    margin: 0;
+  }
 }

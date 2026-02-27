@@ -1,4 +1,3 @@
-// alpha/js/app.js
 const CART_KEY = "pll_cart_v1";
 const JUST_ADDED_KEY = "pll_just_added_v1";
 
@@ -57,10 +56,6 @@ export function clearJustAdded() {
   sessionStorage.removeItem(JUST_ADDED_KEY);
 }
 
-
-
-
-
 export function getLastOrder(){
     try{
       const raw = localStorage.getItem("lastOrder");
@@ -70,11 +65,9 @@ export function getLastOrder(){
     }
   }
 
-
 export function saveLastOrder(order){
     localStorage.setItem("lastOrder", JSON.stringify(order));
 }
-
 
 export function clearCart() {
     localStorage.removeItem(CART_KEY);
