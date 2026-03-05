@@ -37,6 +37,88 @@
     align-items: flex-start;
     gap: 8px;
   }
+
+  .card-form-wrap{
+    width: 100%;
+    border: 1px solid #B9AC19;
+    border-radius: 8px;
+    background: #FDF8EB;
+    padding: 16px;
+    margin-top: -15px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: max-height 220ms ease, opacity 220ms ease, margin 220ms ease, padding 220ms ease;
+    max-height: 1000px;
+    opacity: 1;
+    overflow: hidden;
+  }
+
+  .card-form-wrap.is-hidden{
+    max-height: 0;
+    opacity: 0;
+    margin-top: -31px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-width: 0;
+  }
+
+  .card-form-heading{
+    margin: 4px 0 0;
+    color: #736A08;
+    font-family: "Karla", system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.7px;
+  }
+
+  .card-form-grid{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .field-group{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .field-group.full{
+    grid-column: 1 / -1;
+  }
+
+  .field-label{
+    color: #45371F;
+    font-family: Satoshi, system-ui, "Karla", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+
+  .field-input{
+    width: 100%;
+    border: 1px solid #B9AC19;
+    border-radius: 8px;
+    background: #FBF6E9;
+    color: #45371F;
+    font-family: Satoshi, system-ui, "Karla", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 12px;
+    outline: none;
+    transition: border-color 140ms ease, box-shadow 140ms ease;
+  }
+
+  .field-input::placeholder{
+    color: #8A7C5E;
+  }
+
+  .field-input:focus{
+    border-color: #736A08;
+    box-shadow: 0 0 0 2px rgba(185, 172, 25, 0.15);
+  }
   
   /* individual payment option */
   .payment-option{
@@ -222,6 +304,39 @@
   .payment-footer{
     width: 100%;
     margin-top: 10px;
+  }
+
+  .loading-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(251, 246, 233, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+    z-index: 9000;
+  }
+
+  .loading-overlay.active{
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .loading-spinner{
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    border: 3px solid #B9AC19;
+    border-top-color: #736A08;
+    animation: spinner-rotate 0.8s linear infinite;
+  }
+
+  @keyframes spinner-rotate{
+    to{
+      transform: rotate(360deg);
+    }
   }
 
 
@@ -453,4 +568,14 @@
   
   .tip-box.is-selected{
     background: #F6F1BF;
+  }
+
+  @media (max-width: 420px){
+    .card-form-grid{
+      grid-template-columns: 1fr;
+    }
+
+    .field-group.full{
+      grid-column: auto;
+    }
   }
