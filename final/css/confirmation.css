@@ -106,6 +106,7 @@
     border: 2px solid #252203;
     background: transparent;
     flex-shrink: 0;
+    transition: background 0.3s ease;
   }
   
   .dot-active{
@@ -117,6 +118,24 @@
     background: #252203;
     flex: 1;
     margin: 0 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* animated fill layer */
+  .line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: #B9AC19;
+    transition: width 0.4s ease;
+  }
+
+  .line-active::after {
+    width: 100%;
   }
   
   .progress-labels{

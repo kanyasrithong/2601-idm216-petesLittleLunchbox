@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Customize — Egg & Cheese</title>
+
+  <!-- shared -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- page specific -->
+  <link rel="stylesheet" href="css/customize.css" />
+</head>
+
+<body class="customize">
+
+  <main class="customize-page">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <a class="icon-btn" href="index.html" aria-label="Back to menu">‹</a>
+
+      <a class="bag-btn" href="bag.html" aria-label="Go to bag">
+        <img 
+          src="../assets/images/icons/Bag.svg" 
+          alt="Bag" 
+          class="bag-icon"
+        />
+      </a>
+    </header>
+
+    <!-- IMAGE + TEXT GROUP -->
+    <section class="item-hero">
+      <div class="hero-img-frame">
+        <img class="hero-img" src="../assets/images/menu/bs/egg_cheese.webp" alt="Egg & Cheese sandwich" />
+      </div>
+
+      <div class="item-text">
+        <h1 class="item-title">Egg &amp; Cheese</h1>
+        <p class="item-desc">Fluffy egg and melted cheese on your choice of bread.</p>
+        <p class="item-price">$6.00</p>
+      </div>
+
+      <hr class="divider" />
+    </section>
+
+    <!-- OPTIONS (no-JS accordion) -->
+    <form id="customizeForm" class="options">
+
+      <!-- Bread -->
+      <details class="acc" open>
+        <summary class="acc-header">
+          <span class="acc-title">* Bread <span class="acc-sub">[select one]</span></span>
+          <span class="acc-caret" aria-hidden="true">
+            <img src="../assets/images/icons/Down.svg" alt="Expand">
+          </span>
+        </summary>
+
+        <div class="acc-panel">
+          <label class="opt">
+            <input class="opt-input" type="radio" name="bread" value="White Bread" required>
+            <span class="opt-img">
+              <img src="../assets/images/variant/bread/white.webp" alt="White Bread">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">White Bread</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="bread" value="Wheat Bread" required>
+            <span class="opt-img">
+              <img src="../assets/images/variant/bread/wheat.webp" alt="Wheat Bread">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">Wheat Bread</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="bread" value="Bagel" required>
+            <span class="opt-img">
+              <img src="../assets/images/variant/bread/everything.webp" alt="Bagel">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">Bagel</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="bread" value="Croissant" required>
+            <span class="opt-img">
+              <img src="../assets/images/variant/bread/croissant.webp" alt="Croissant">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">Croissant</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="bread" value="Wrap" required>
+            <span class="opt-img">
+              <img src="../assets/images/variant/bread/tortilla.webp" alt="Wrap">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">Wrap</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="bread" value="Pita" required>
+            <span class="opt-img">
+              <img src="../assets/images/variant/bread/pita.webp" alt="Pita">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">Pita</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="bread" value="Hoagie" required>
+            <span class="opt-img">
+              <img src="../assets/images/variant/bread/hoagie.webp" alt="Hoagie">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">Hoagie</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+        </div>
+      </details>
+
+      
+
+      <!-- Meat -->
+      <details class="acc">
+        <summary class="acc-header">
+          <span class="acc-title">* Meat <span class="acc-sub">[select one]</span></span>
+          <span class="acc-caret" aria-hidden="true">
+            <img src="../assets/images/icons/Down.svg" alt="Expand">
+          </span>
+        </summary>
+
+        <div class="acc-panel">
+          <label class="opt">
+            <input class="opt-input" type="radio" name="meat" value="None">
+            <span class="opt-img">
+              <img src="../assets/images/variant/meat/none.webp" alt="None">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">None</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+          
+          <label class="opt">
+            <input class="opt-input" type="radio" name="meat" value="Bacon">
+            <span class="opt-img">
+              <img src="../assets/images/variant/meat/bacon.webp" alt="Bacon">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">Bacon</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="meat" value="Turkey Bacon">
+            <span class="opt-img">
+              <img src="../assets/images/variant/meat/turkey_bacon.webp" alt="Turkey Bacon">
+            </span>
+
+            <div>
+              <span class="opt-text">Turkey Bacon</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="meat" value="Ham">
+            <span class="opt-img">
+              <img src="../assets/images/variant/meat/ham.webp" alt="Ham Sausage">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">Ham</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="meat" value="Sausage">
+            <span class="opt-img">
+              <img src="../assets/images/variant/meat/sausage.webp" alt="Sausage">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">Sausage</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="meat" value="Pork Roll">
+            <span class="opt-img">
+              <img src="../assets/images/variant/meat/pork_roll.webp" alt="Pork Roll">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">Pork</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="meat" value="Scrapple">
+            <span class="opt-img">
+              <img src="../assets/images/variant/meat/scrapple.webp" alt="Scrapple">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">Scrapple</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="meat" value="Steak">
+            <span class="opt-img">
+              <img src="../assets/images/variant/meat/steak.webp" alt="Steak">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">Steak</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+
+          <label class="opt">
+            <input class="opt-input" type="radio" name="meat" value="Hot Sausage">
+            <span class="opt-img">
+              <img src="../assets/images/variant/meat/hot_sausage.webp" alt="Hot Sausage">
+            </span>
+            <div class="opt-details">
+              <span class="opt-text">Hot Sausage</span>
+              <span class="opt-price">+$0.00</span>
+            </div>
+          </label>
+        </div>
+      </details>
+    </form>
+
+    <hr class="divider" />
+
+    <!-- TEXTAREA -->
+    <section class="notes">
+      <form>
+        <textarea class="textarea-box" type="text" placeholder="Please let the kitchen know of any dietary restrictions…"></textarea>
+      </form>
+    </section>
+
+    <!-- QUANTITY BAR -->
+    <section class="qty">
+      <div class="qty-bar">
+        <p class="qty-label">Quantity</p>
+
+        <div class="qty-controls">
+          <button class="qty-btn" type="button" id="qtyDec" aria-label="Decrease quantity">
+            <img src="../assets/images/icons/Minus.svg" alt="Subtract">
+          </button>
+          <p class="qty-num" id="qtyNum">1</p>
+          <button class="qty-btn" type="button" id="qtyInc" aria-label="Increase quantity">
+            <img src="../assets/images/icons/Plus.svg" alt="Add">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADD TO BAG -->
+    <section class="cta">
+      <button class="add-to-bag" id="addToBagBtn" type="button">Add to Bag</button>
+    </section>
+
+  </main>
+
+  <script type="module">
+    import { addToCart } from "./js/app.js";
+  
+    let qty = 1;
+    const qtyNum = document.getElementById("qtyNum");
+    const dec = document.getElementById("qtyDec");
+    const inc = document.getElementById("qtyInc");
+    const btn = document.getElementById("addToBagBtn");
+  
+    function getBread() {
+      const picked = document.querySelector('input[name="bread"]:checked');
+      return picked ? picked.value : "";
+    }
+  
+    function getMeat() {
+      const picked = document.querySelector('input[name="meat"]:checked');
+      return picked ? picked.value : "";
+    }
+  
+    dec.addEventListener("click", () => {
+      qty = Math.max(1, qty - 1);
+      qtyNum.textContent = String(qty);
+    });
+  
+    inc.addEventListener("click", () => {
+      qty = qty + 1;
+      qtyNum.textContent = String(qty);
+    });
+  
+    btn.addEventListener("click", () => {
+      const bread = getBread() || "Kaiser Roll";
+      const meat = getMeat();
+  
+      const subtitleParts = [bread, meat];
+      const subtitle = subtitleParts.join(" • ");
+  
+      addToCart({
+        id: "egg_cheese",
+        name: "Egg & Cheese",
+        subtitle,
+        price: 6.00,
+        img: "../assets/images/menu/bs/egg_cheese.webp",
+        editHref: "customize.html",
+        qty,
+        options: { bread, meat }
+      });
+  
+      document.body.classList.add("page-exit");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 520);
+    });
+  </script>
+
+</body>
+</html>

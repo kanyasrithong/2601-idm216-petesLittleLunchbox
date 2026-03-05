@@ -121,5 +121,38 @@
     }
   </script>
 
+  <script>
+    const isReplay = new URLSearchParams(window.location.search).get("replay") === "true";
+
+    if (isReplay) {
+      const dots = document.querySelectorAll(".dot");
+      const lines = document.querySelectorAll(".line");
+
+      // Reset all to empty first
+      dots.forEach(d => d.classList.remove("dot-active"));
+
+      // Step 1: first dot lights up
+      setTimeout(() => {
+        dots[0].classList.add("dot-active");
+      }, 400);
+
+      // Step 2: first line fills, second dot lights up
+      setTimeout(() => {
+        lines[0].classList.add("line-active");
+      }, 900);
+      setTimeout(() => {
+        dots[1].classList.add("dot-active");
+      }, 1300);
+
+      // Step 3: second line fills, third dot lights up
+      setTimeout(() => {
+        lines[1].classList.add("line-active");
+      }, 1800);
+      setTimeout(() => {
+        dots[2].classList.add("dot-active");
+      }, 2200);
+    }
+  </script>
+
 </body>
 </html>
