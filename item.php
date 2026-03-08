@@ -32,7 +32,7 @@
 </head>
 <body class="body-center">
   <a class="back-button" href="menu.php">Back</a>
-  <img src="assets/images/<?= $item['img_url'] ?>" alt="">
+  <img src="assets/images/<?= $item['img_url'] ?>" alt="<?= $item['item_name'] ?>">
   <h1><?= $item['item_name'] ?></h1>
   <p><?= $item['description'] ?></p>
   <p>$<?= $item['base_price'] ?></p>
@@ -60,7 +60,7 @@
     </fieldset>
 
     <?php if (!empty($bs_variants)) : ?>
-      <fieldset>
+    <fieldset>
       <span>*Meat</span>
       <span>[select one]</span>
       <?php foreach ($bs_variants as $bs_variant) : ?>
@@ -71,7 +71,15 @@
       <?php endforeach ?>
     </fieldset>
     <?php endif ?>
+
+    <div class="quantity-control item" data-id="<?= $item['id'] ?>">
+      <p>Quantity</p>
+      <button type="button" class="quantity-button minus">-</button>
+      <input type="number" class="quantity-value" min="1" name="quantity" value="1">
+      <button type="button" class="quantity-button plus">+</button>
+    </div>
     <input type="submit" value="Add to Bag">
   </form>
+  <script src="functions/js/quantity-counter.js"></script>
 </body>
 </html>

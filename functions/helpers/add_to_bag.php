@@ -6,10 +6,10 @@
   include '../bs_variants.php';
 
   $item = getItemByID(intval($_GET['item_id']));
-
   $variants = [];
+  $quantity = intval($_POST['quantity'] ?? 1);
 
-  if (isset($_POST['variants'])) {
+  if (!empty($_POST['variants'])) {
     $variant_ids = $_POST['variants'];
     
     foreach ($variant_ids as $variant_type => $variant_id) {
@@ -38,6 +38,7 @@
   $bag_item = [
     'id' => uniqid(),
     'item_name' => $item['item_name'],
+    'item_quantity' => $quantity,
     'item_total' => $item['base_price']
   ];
 
