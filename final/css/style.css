@@ -211,6 +211,29 @@ body {
   display: inline-block;
 }
 
+.section.is-hidden{
+  display: none;
+}
+
+/* Filtered category view: show all cards without horizontal scroll */
+.page.is-filtered .card-row{
+  overflow-x: visible;
+  padding-bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.page.is-filtered .card{
+  width: 100%;
+}
+
+@media (max-width: 380px){
+  .page.is-filtered .card-row{
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ===== Bottom Navigation ===== */
 .bottom-nav{
   position: fixed;

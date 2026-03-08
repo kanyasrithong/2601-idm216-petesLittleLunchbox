@@ -40,7 +40,8 @@
 
     <!-- form area -->
     <section class="phone-form">
-      <input class="phone-input" type="text" placeholder="Enter number here..." />
+      <input class="phone-input" type="tel" inputmode="numeric" pattern="[0-9]*" placeholder="Enter number here..."
+        oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
 
       <a class="primary-btn" href="payment.html" aria-label="Continue">Continue</a>
     </section>

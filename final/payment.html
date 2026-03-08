@@ -50,26 +50,79 @@
     <!-- payment methods -->
     <section class="payment-methods">
 
-      <div class="payment-option is-selected">
+      <div class="payment-option" data-payment="card">
         <img class="payment-icon" src="../assets/images/icons/debit.png" alt="Card" />
         <span class="payment-text">Debit/Credit Card</span>
       </div>
 
-      <div class="payment-option">
+      <div class="payment-option" data-payment="applepay">
         <img class="payment-icon" src="../assets/images/icons/applepay.png" alt="Apple Pay" />
         <span class="payment-text">Apple Pay</span>
       </div>
 
-      <div class="payment-option">
+      <div class="payment-option" data-payment="paypal">
         <img class="payment-icon" src="../assets/images/icons/paypal.png" alt="Paypal" />
         <span class="payment-text">Paypal</span>
       </div>
 
-      <div class="payment-option">
+      <div class="payment-option" data-payment="venmo">
         <img class="payment-icon" src="../assets/images/icons/venmo.png" alt="Venmo" />
         <span class="payment-text">Venmo</span>
       </div>
 
+    </section>
+
+    <section class="card-form-wrap" id="cardFormWrap" autocomplete="off">
+      <div class="card-form-grid">
+        <div class="field-group full">
+          <label class="field-label" for="cardName">Name on Card</label>
+          <input class="field-input" id="cardName" type="text" placeholder="Jane Doe" autocomplete="off" />
+        </div>
+
+        <div class="field-group full">
+          <label class="field-label" for="cardNumber">Card Number</label>
+          <input class="field-input" id="cardNumber" type="text" inputmode="numeric" placeholder="1234 5678 9012 3456" autocomplete="off" />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="cardExp">Expiration</label>
+          <input class="field-input" id="cardExp" type="text" inputmode="numeric" placeholder="MM/YY" autocomplete="off" />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="cardCvv">CVV</label>
+          <input class="field-input" id="cardCvv" type="text" inputmode="numeric" placeholder="123" autocomplete="off" />
+        </div>
+      </div>
+
+      <p class="card-form-heading">Billing Address</p>
+
+      <div class="card-form-grid">
+        <div class="field-group full">
+          <label class="field-label" for="billingStreet">Street Address</label>
+          <input class="field-input" id="billingStreet" type="text" placeholder="123 Main St" autocomplete="off" />
+        </div>
+
+        <div class="field-group full">
+          <label class="field-label" for="billingApt">Apt, Suite, etc. (optional)</label>
+          <input class="field-input" id="billingApt" type="text" placeholder="Unit 4B" autocomplete="off" />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="billingCity">City</label>
+          <input class="field-input" id="billingCity" type="text" placeholder="Philadelphia" autocomplete="off" />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="billingState">State</label>
+          <input class="field-input" id="billingState" type="text" placeholder="PA" autocomplete="off" />
+        </div>
+
+        <div class="field-group full">
+          <label class="field-label" for="billingZip">ZIP Code</label>
+          <input class="field-input" id="billingZip" type="text" inputmode="numeric" placeholder="19147" autocomplete="off" />
+        </div>
+      </div>
     </section>
 
     <!-- olive divider -->
@@ -142,11 +195,15 @@
     </section>
 
     <!-- button -->
-    <section class="payment-footer">
+  <section class="payment-footer">
       <button class="primary-btn" id="placeOrderBtn">Place Order</button>
     </section>
 
   </main>
+
+  <div class="loading-overlay" id="loadingOverlay" aria-hidden="true">
+    <div class="loading-spinner" aria-label="Loading"></div>
+  </div>
 
   <!-- Apple Pay Overlay -->
   <div class="applepay-overlay" id="applePayOverlay" aria-hidden="true">
@@ -208,6 +265,7 @@
     const placeOrderBtn = document.getElementById("placeOrderBtn");
     const applePayOverlay = document.getElementById("applePayOverlay");
     const applePayCloseBtn = document.getElementById("applePayCloseBtn");
+    const loadingOverlay = document.getElementById("loadingOverlay");
 
     const summaryItems = document.getElementById("summaryItems");
     const tipLabel = document.getElementById("tipLabel");
@@ -349,16 +407,38 @@
 
     // PAYMENT SELECTION (styling only)
     const paymentOptions = document.querySelectorAll(".payment-option");
+    const cardFormWrap = document.getElementById("cardFormWrap");
+
+    function toggleCardForm() {
+      const selected = document.querySelector(".payment-option.is-selected");
+      const showCardForm = selected?.dataset.payment === "card";
+      if (cardFormWrap) cardFormWrap.classList.toggle("is-hidden", !showCardForm);
+    }
+
     paymentOptions.forEach(option => {
       option.addEventListener("click", () => {
+        const wasSelected = option.classList.contains("is-selected");
         paymentOptions.forEach(o => o.classList.remove("is-selected"));
-        option.classList.add("is-selected");
+        if (!wasSelected) {
+          option.classList.add("is-selected");
+        }
+        toggleCardForm();
       });
     });
+    toggleCardForm();
 
     // PLACE ORDER
     placeOrderBtn.addEventListener("click", () => {
-      applePayOverlay.classList.add("active");
+      if (loadingOverlay) {
+        loadingOverlay.classList.add("active");
+      }
+
+      const selectedPayment = document.querySelector(".payment-option.is-selected");
+      const isApplePay = selectedPayment?.dataset.payment === "applepay";
+
+      if (isApplePay) {
+        applePayOverlay.classList.add("active");
+      }
 
       const cart = getCart();
       const subtotal = subtotalFromCart(cart);
@@ -385,9 +465,11 @@
       // clear cart AFTER placing order
       clearCart();
 
+      const redirectDelay = isApplePay ? 2000 : 800;
       setTimeout(() => {
+        if (loadingOverlay) loadingOverlay.classList.remove("active");
         window.location.href = "confirmation.html";
-      }, 2000);
+      }, redirectDelay);
     });
 
     applePayCloseBtn.addEventListener("click", () => {
