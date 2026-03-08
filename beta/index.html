@@ -1,3 +1,23 @@
+<?php
+  session_start();
+  require_once "db.php";
+  include "functions/categories.php";
+  include "functions/items.php";
+
+  // initialize this after order is confirmed (check confirmation.php)
+  if (isset($_GET['clear']) && $_GET['clear'] === 'true') {
+    $_SESSION['bag'] = [];
+    header('Location: menu.php');
+    exit;
+  }
+
+  if (!isset($_SESSION['bag'])) {
+    $_SESSION['bag'] = [];
+  }
+
+  $bag_count = count($_SESSION['bag']);
+  $categories = getCategories();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +47,7 @@
         window.location.href = "index.html";
     });
     </script>
-    <!-- ORDER CONFIRMATION BANNER (hidden by default, JS will show it) -->
+    <!-- ORDER CONFIRMATION BANNER -->
     <a id="orderBanner" class="order-banner" href="confirmation.html" style="display:none;"></a>
         <span class="order-banner-text">View your latest order confirmation</span>
         <span class="order-banner-arrow">
