@@ -366,6 +366,47 @@ body {
   animation: badgePulse 420ms ease;
 }
 
+/* ---------- quantity ---------- */
+.qty{
+  width: 100%;
+}
+
+.qty-bar{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #B7C33A;
+  background: #F6F1BF;
+}
+
+.qty-label, .qty-value {
+  margin: 0;
+  color: #45371F;
+  font-family: "Karla", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.84px;
+}
+
+.qty-controls{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.qty-num{
+  margin: 0;
+  color: #45371F;
+  font-family: "Karla", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.84px;
+}
+
 .qty-btn{
   width: 24px;
   height: 24px;

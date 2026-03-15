@@ -24,7 +24,7 @@
   <div class="splash-content">
     <h1 class="splash-title">Petes Little Lunchbox</h1>
     <p class="splash-tagline">A <span class="serif">new</span> food truck app for breakfast + lunch.</p>
-    <a href="index.html" class="splash-btn">Order Now</a>
+    <a href="menu.php" class="splash-btn">Order Now</a>
   </div>
 
   <script>

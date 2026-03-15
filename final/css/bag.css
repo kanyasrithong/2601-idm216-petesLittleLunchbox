@@ -278,6 +278,7 @@
     flex-shrink: 0;
     font-size: 16px;
     line-height: 1;
+    text-decoration: none;
   }
   
   /* bottom line */
@@ -331,6 +332,7 @@
     flex-direction: column;
     gap: 16px;
     flex: 0 0 auto;
+    padding-bottom: 36px;
   }
   
   .add-side-title{

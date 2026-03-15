@@ -17,7 +17,7 @@
 
     <!-- back button -->
     <header class="phone-topbar">
-      <a class="icon-btn" href="bag.html" aria-label="Back to bag">‹</a>
+      <a class="icon-btn" href="bag.php" aria-label="Back to bag">‹</a>
     </header>
 
     <!-- title -->
@@ -43,7 +43,7 @@
       <input class="phone-input" type="tel" inputmode="numeric" pattern="[0-9]*" placeholder="Enter number here..."
         oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
 
-      <a class="primary-btn" href="payment.html" aria-label="Continue">Continue</a>
+      <a class="primary-btn" href="payment.php" aria-label="Continue">Continue</a>
     </section>
 
   </main>
