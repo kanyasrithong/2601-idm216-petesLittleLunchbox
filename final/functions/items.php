@@ -15,7 +15,7 @@
     $stmt_items->execute();
     $items = $stmt_items->get_result();
 
-    return $items->fetch_all(MYSQLI_ASSOC); 
+    return $items->fetch_all(MYSQLI_ASSOC);
   }
 
   function getItemByID($item_id) {

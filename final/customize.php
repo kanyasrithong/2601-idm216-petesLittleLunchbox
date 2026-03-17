@@ -84,25 +84,25 @@
               </span>
             </summary>
             
-            <div class="acc-panel">
-              <?php foreach ($variants as $variant) : ?>
-                <label class="opt">
-                  <input class="opt-input" type="radio" name="variants[<?= $variant_type ?>]" value="<?= $variant['id'] ?>" required>
-                  <span class="opt-img">
-                    <img src="../assets/images/<?= $variant['img_url'] ?>" alt="<?= $variant['variant_name'] ?>">
-                  </span>
-                  <div class="opt-details">
-                    <span class="opt-text"><?= $variant['variant_name'] ?></span>
-                    <span class="opt-price">+$<?= $variant['add_price'] ?></span>
-                  </div>
-                </label>
-              <?php endforeach ?>
-            </div>
+          <div class="acc-panel">
+            <?php foreach ($variants as $variant) : ?>
+              <label class="opt">
+                <input class="opt-input" type="radio" name="variants[<?= $variant_type ?>]" value="<?= $variant['id'] ?>" required>
+                <span class="opt-img">
+                  <img src="../assets/images/<?= $variant['img_url'] ?>" alt="<?= $variant['variant_name'] ?>">
+                </span>
+                <div class="opt-details">
+                  <span class="opt-text"><?= $variant['variant_name'] ?></span>
+                  <span class="opt-price">+$<?= $variant['add_price'] ?></span>
+                </div>
+              </label>
+            <?php endforeach ?>
+          </div>
           <?php endif ?>
         </details>
 
       <?php if (!empty($bs_variants)) : ?>
-            <!-- Meat -->
+        <!-- Meat -->
         <details class="acc">
           <summary class="acc-header">
             <span class="acc-title">* Meat <span class="acc-sub">[select one]</span></span>
@@ -169,6 +169,15 @@
     //   }, 520);
     // });
   </script>
-  <script src="functions/js/quantity-counter.js"></script>
+  <script src="../final/functions/js/quantity-counter.js"></script>
+  <script>
+    // opens when required input isn't selected
+    document.querySelectorAll('.acc-panel input[required]').forEach(input => {
+      input.addEventListener('invalid', () => {
+        const details = input.closest('details');
+        details.open = true;
+      });
+    });
+  </script>
 </body>
 </html>

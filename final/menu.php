@@ -4,18 +4,20 @@
   include "functions/categories.php";
   include "functions/items.php";
 
-  // initialize this after order is confirmed (check confirmation.php)
-  if (isset($_GET['clear']) && $_GET['clear'] === 'true') {
-    $_SESSION['bag'] = [];
+  // initialize this after order is confirmed
+  if (isset($_GET['replay']) && $_GET['replay'] === 'false') {
+    $_SESSION['order'] = [];
     header('Location: menu.php');
     exit;
+  } elseif (isset($_GET['replay']) && $_GET['replay'] === 'true') {
+    $_SESSION['order'] = $_SESSION['bag'];
+    $_SESSION['bag'] = [];
   }
 
   if (!isset($_SESSION['bag'])) {
     $_SESSION['bag'] = [];
   }
 
-  $bag_count = count($_SESSION['bag']);
   $categories = getCategories();
 ?>
 <!DOCTYPE html>
@@ -34,13 +36,20 @@
 </head>
 
 <body>
-    <!-- ORDER CONFIRMATION BANNER (hidden by default, JS will show it) -->
-    <a id="orderBanner" class="order-banner" href="confirmation.html?replay=true" style="display:none;">
-        <span class="order-banner-text">View your latest order confirmation</span>
-        <span class="order-banner-arrow">
-          <img src="../assets/images/icons/Forward.svg" alt="Forward">
-        </span>
+  <!-- ORDER CONFIRMATION BANNER -->
+  <?php if (isset($_GET['replay']) && $_GET['replay'] === 'true') : ?>
+    <a id="orderBanner" class="order-banner" href="confirmation.php?replay=true" style="display:none;">
+      <span class="order-banner-text">View your latest order confirmation</span>
+      <span class="order-banner-arrow">
+        <img src="../assets/images/icons/Forward.svg" alt="Forward">
+      </span>
     </a>
+  <?php endif?>
+
+  <!-- BAG COUNT -->
+  <?php $bag_count = count($_SESSION['bag']) ?>
+  <input id="bagCount" type="hidden" value="<?= intval($bag_count) ?>">
+
   <!-- HEADER -->
   <header class="top">
     <h1 class="welcome">
@@ -64,28 +73,18 @@
   <!-- MAIN CONTENT -->
   <main class="page">
     <?php foreach ($categories as $category) : ?> 
-      <?php $category_items = getItemsByCategory($category['id']); ?>
-      <!-- BREAKFAST -->
+      <?php $category_items = getItemsByCategory($category['id']) ?>
+
       <section class="section" id="<?= $category['category_name'] ?>">
         <h2 class="section-title"><?= strtoupper($category['category_name']) ?></h2>
 
         <div class="card-row">
-          <?php foreach ($category_items as $category_item) : ?>
-            <a class="card-link" href="customize.php?item=<?= urlencode($category_item['item_name']) ?>">
-              <article class="card">
-                <div class="card-img-wrap">
-                  <img class="card-img" src="../assets/images/<?= $category_item['img_url'] ?>" alt="<?= $category_item['item_name'] ?>">
-                </div>
+          <?php foreach ($category_items as $item) : ?>
 
-                <div class="card-bottom">
-                  <p class="card-name"><?= $category_item['item_name'] ?></p>
-              
-                  <div class="card-action">
-                    <p class="card-price">$<?= $category_item['base_price'] ?></p>
-                  </div>
-                </div>
-              </article>
+            <a class="card-link" href="customize.php?item=<?= urlencode($item['item_name']) ?>">
+              <?php include 'components/card.php' ?>
             </a>
+            
           <?php endforeach ?>
         </div>
       </section>
@@ -112,19 +111,11 @@
     </a>
   </nav>
 
-  <script type="module" src="functions/js/main.js"></script>
+  <script type="module" src="../final/functions/js/main.js"></script>
   <script type="module">
-    import { mountHomeBadge } from "functions/js/ui.js";
-    import { getLastOrder } from "functions/js/app.js";
-  
+    import { mountHomeBadge } from "../final/functions/js/ui.js";
+
     mountHomeBadge();
-  
-    const banner = document.getElementById("orderBanner");
-    const lastOrder = getLastOrder();
-  
-    if (banner && lastOrder) {
-      banner.style.display = "flex";
-    }
   </script>
 </body>
 </html>

@@ -4,13 +4,13 @@
 
 
 
-  .bag{
+  .bag {
     background: #FBF6E9;
     color: #45371F;
   }
   
   /* overall page frame */
-  .bag-page{
+  .bag-page {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -21,14 +21,14 @@
   }
   
   /* pickup header */
-  .pickup{
+  .pickup {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 11px;
   }
   
-  .pickup-title{
+  .pickup-title {
     margin: 0;
     color: #252203;
     font-family: "Karla", system-ui, sans-serif;
@@ -38,7 +38,7 @@
     line-height: 30px;
   }
   
-  .pickup-address{
+  .pickup-address {
     margin: 0;
     color: #736A08;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
@@ -52,24 +52,24 @@
      ========================= */
   
   
-.pickup-choice{
+.pickup-choice {
     border: none;
     background: transparent;
     width: 100%;
   }
   
-  .pickup-choice .pickup-box-text{
+  .pickup-choice .pickup-box-text {
     margin: 0; 
   }
 
-  .pickup-options{
+  .pickup-options {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
   
-  .pickup-box{
+  .pickup-box {
     width: 100%;
     border-radius: 8px;
     border: 1px solid #45371F;
@@ -77,25 +77,25 @@
   }
   
   /* ASAP as a button */
-  .pickup-choice{
+  .pickup-choice {
     padding: 16px;
     cursor: pointer;
     text-align: left;
     transition: background 180ms ease, transform 180ms ease;
   }
   
-  .pickup-choice:active{
+  .pickup-choice:active {
     transform: scale(0.99);
   }
   
   /* selected state */
-  .pickup-choice.is-selected{
+  .pickup-choice.is-selected {
     background: #F6F1BF;
     border-color: #252203;
     box-shadow: inset 0 0 0 1px #252203;
   }
   
-  .pickup-box-text{
+  .pickup-box-text {
     margin: 0;
     color: #45371F;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
@@ -105,11 +105,11 @@
   }
   
   /* schedule dropdown wrapper (looks like same box) */
-  .pickup-select-wrap{
+  .pickup-select-wrap {
     position: relative;
   }
   
-  .pickup-select{
+  .pickup-select {
     height: fit-content;
     width: 100%;
     appearance: none;
@@ -131,7 +131,7 @@
     cursor: pointer;
   }
   
-  .pickup-select-icon{
+  .pickup-select-icon {
     position: absolute;
     right: 16px;
     top: 50%;
@@ -142,7 +142,7 @@
   }
   
   /* selected look for schedule when a time is chosen */
-  .pickup-select-wrap.is-selected{
+  .pickup-select-wrap.is-selected {
     background: #F6F1BF;
     border-color: #252203;
     box-shadow: inset 0 0 0 1px #252203;
@@ -152,7 +152,7 @@
      JS-rendered list + empty
      ========================= */
   
-  .bag-list{
+  .bag-list {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -160,14 +160,14 @@
   }
   
   /* empty state */
-  .bag-empty{
+  .bag-empty {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
   
-  .bag-empty-title{
+  .bag-empty-title {
     margin: 0;
     font-family: "Karla", system-ui, sans-serif;
     font-size: 24px;
@@ -176,7 +176,7 @@
     color: #252203;
   }
   
-  .bag-empty-sub{
+  .bag-empty-sub {
     margin: 0;
     font-family: Satoshi, system-ui, sans-serif;
     font-size: 14px;
@@ -188,21 +188,21 @@
      BAG ITEM CARD
      ========================= */
   
-  .bag-item{
+  .bag-item {
     width: 100%;
     background: #ffffff;
     border-radius: 8px;
     padding: 16px;
   }
   
-  .bag-item-row{
+  .bag-item-row {
     display: flex;
     align-items: flex-start;
     gap: 16px;
   }
   
   /* image frame */
-  .bag-item-img{
+  .bag-item-img {
     width: 78px;
     height: 77px;
     border-radius: 8px;
@@ -212,7 +212,7 @@
     flex-shrink: 0;
   }
   
-  .bag-item-content{
+  .bag-item-content {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -220,20 +220,20 @@
   }
   
   /* top line */
-  .bag-item-topline{
+  .bag-item-topline {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 12px;
   }
   
-  .bag-item-text{
+  .bag-item-text {
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
   
-  .bag-item-name{
+  .bag-item-name {
     margin: 0;
     color: #45371F;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
@@ -242,7 +242,7 @@
     letter-spacing: 0.28px;
   }
   
-  .bag-item-addon{
+  .bag-item-addon {
     margin: 0;
     color: #45371F;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
@@ -252,13 +252,13 @@
   }
   
   /* right side */
-  .bag-item-right{
+  .bag-item-right {
     display: flex;
     align-items: center;
     gap: 8px;
   }
   
-  .bag-item-price{
+  .bag-item-price {
     margin: 0;
     color: #45371F;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
@@ -268,7 +268,7 @@
   }
   
   /* trash button */
-  .trash-btn{
+  .trash-btn {
     width: 24px;
     height: 24px;
     padding: 0;
@@ -282,14 +282,14 @@
   }
   
   /* bottom line */
-  .bag-item-bottomline{
+  .bag-item-bottomline {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   
   /* edit button */
-  .edit-btn{
+  .edit-btn {
     height: 24px;
     padding: 8px;
     display: flex;
@@ -307,13 +307,13 @@
   }
   
   /* qty */
-  .qty-controls{
+  .qty-controls {
     display: flex;
     align-items: center;
     gap: 12px;
   }
   
-  .qty-num{
+  .qty-num {
     margin: 0;
     color: #45371F;
     font-family: "Karla", system-ui, sans-serif;
@@ -326,7 +326,7 @@
      ADD A SIDE
      ========================= */
   
-  .add-side{
+  .add-side {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -335,7 +335,7 @@
     padding-bottom: 36px;
   }
   
-  .add-side-title{
+  .add-side-title {
     margin: 0;
     color: #45371F;
     font-family: "Karla", system-ui, sans-serif;
@@ -345,14 +345,14 @@
     text-transform: uppercase;
   }
   
-  .add-side-row{
+  .add-side-row {
     display: flex;
     gap: 12px;
     overflow-x: auto;
     padding-bottom: 8px;
   }
   
-  .add-side-row::-webkit-scrollbar{
+  .add-side-row::-webkit-scrollbar {
     display: none;
   }
   
@@ -360,7 +360,7 @@
      FOOTER (sticky above nav)
      ========================= */
   
-  .bag-footer{
+  .bag-footer {
     width: 100%;
     position: sticky;
     bottom: 72px;           /* height of bottom nav */
@@ -372,14 +372,14 @@
     gap: 14px;
   }
   
-  .bag-total-row{
+  .bag-total-row {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   
-  .bag-total-label{
+  .bag-total-label {
     color: #736A08;
     font-family: "Karla", system-ui, sans-serif;
     font-size: 24px;
@@ -387,7 +387,7 @@
     letter-spacing: -1.44px;
   }
   
-  .bag-total-value{
+  .bag-total-value {
     color: #736A08;
     font-family: "Karla", system-ui, sans-serif;
     font-size: 32px;

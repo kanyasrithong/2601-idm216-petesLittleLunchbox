@@ -2,13 +2,13 @@
    Splash Screen — Pete's Little Lunchbox
    ============================================================ */
 
-*, *::before, *::after {
+*, *::before, *::after  {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body {
+body  {
   background: #F2D4C9;
   min-height: 100dvh;
   overflow: hidden;
@@ -18,7 +18,7 @@ body {
 
 /* ── Logo wrapper ────────────────────────────────────────── */
 
-.logo-wrap {
+.logo-wrap  {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -28,7 +28,7 @@ body {
     logo-move    0.65s cubic-bezier(0.4, 0, 0.2, 1) 1.4s forwards;
 }
 
-.logo {
+.logo  {
   display: block;
   width: 200px;
   height: auto;
@@ -36,19 +36,19 @@ body {
 }
 
 /* Phase 1 — fade in centered */
-@keyframes logo-fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+@keyframes logo-fadein  {
+  from  { opacity: 0; }
+  to    { opacity: 1; }
 }
 
 /* Phase 2 — move to upper-left */
-@keyframes logo-move {
-  from {
+@keyframes logo-move  {
+  from  {
     top: 50%;
     left: 50%;
     transform: scale(1);
   }
-  to {
+  to  {
     top: 56px;
     left: 36px;
     transform: scale(0.55);
@@ -57,19 +57,19 @@ body {
 
 /* ── Page exit (fade + subtle shrink) ───────────────────── */
 
-@keyframes page-exit {
-  from { opacity: 1; transform: scale(1); }
-  to   { opacity: 0; transform: scale(0.97); }
+@keyframes page-exit  {
+  from  { opacity: 1; transform: scale(1); }
+  to    { opacity: 0; transform: scale(0.97); }
 }
 
-body.exiting {
+body.exiting  {
   animation: page-exit 0.35s ease-in forwards;
   pointer-events: none;
 }
 
 /* ── Splash content (text + button) ─────────────────────── */
 
-.splash-content {
+.splash-content  {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -86,14 +86,14 @@ body.exiting {
   animation-delay: 2.3s;
 }
 
-@keyframes content-fadein {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes content-fadein  {
+  from  { opacity: 0; transform: translateY(12px); }
+  to    { opacity: 1; transform: translateY(0); }
 }
 
 /* ── Typography ──────────────────────────────────────────── */
 
-.splash-title {
+.splash-title  {
   font-family: "Karla", system-ui, sans-serif;
   font-weight: 700;
   font-size: 20px;
@@ -103,7 +103,7 @@ body.exiting {
   text-transform: uppercase;
 }
 
-.splash-tagline {
+.splash-tagline  {
   font-family: "Karla", system-ui, sans-serif;
   font-size: 32px;
   font-weight: 400;
@@ -112,14 +112,14 @@ body.exiting {
   letter-spacing: -1px;
 }
 
-.splash-tagline .serif {
+.splash-tagline .serif  {
   font-family: Georgia, serif;
   font-style: italic;
 }
 
 /* ── Get Started button ──────────────────────────────────── */
 
-.splash-btn {
+.splash-btn  {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,6 +143,6 @@ body.exiting {
   transition: opacity 0.2s ease;
 }
 
-.splash-btn:active {
+.splash-btn:active  {
   opacity: 0.8;
 }

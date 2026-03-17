@@ -2,12 +2,12 @@
    PHONE PAGE
    ========================= */
 
-   .phone{
+   .phone {
     background: #FBF6E9;
     color: #45371F;
   }
   
-  .phone-page{
+  .phone-page {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -18,16 +18,16 @@
   }
   
   /* top bar */
-  .phone-topbar{
+  .phone-topbar {
     width: 100%;
   }
   
   /* title area */
-  .phone-hero{
+  .phone-hero {
     margin-top: 60px; 
   }
   
-  .phone-title{
+  .phone-title {
     margin: 0;
     color: #252203;
     font-family: "Karla", system-ui, sans-serif;
@@ -37,14 +37,14 @@
     line-height: 36px;
   }
 
-  .phone-graphic {
+  .phone-graphic  {
     display: flex;
     justify-content: center;
     width: 100%;
   }
   
   /* input + button pinned near bottom */
-  .phone-form{
+  .phone-form {
     width: 100%;
     margin-top: auto;
     display: flex;
@@ -53,7 +53,7 @@
   }
   
   /* input style */
-  .phone-input{
+  .phone-input {
     width: 100%;
     padding: 16px;
     border-radius: 8px;
@@ -67,6 +67,6 @@
     color: #45371F;
   }
   
-  .phone-input::placeholder{
+  .phone-input::placeholder {
     color: rgba(69, 55, 31, 0.55);
   }

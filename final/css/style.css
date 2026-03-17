@@ -1,5 +1,5 @@
 /* ---------- ROOT COLORS ---------- */
-:root{
+:root {
   --ink: #252203;
   --olive: #736A08;
   --pink: #F2D4C9;
@@ -7,16 +7,16 @@
 }
 
 /* ---------- GLOBAL ---------- */
-*{
+* {
   box-sizing: border-box;
 }
 
-html, body{
+html, body {
   width: 100%;
   overflow-x: hidden;
 }
 
-body {
+body  {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
@@ -26,7 +26,7 @@ body {
 /* =========================
    ORDER BANNER (Homepage)
    ========================= */
-.order-banner{
+.order-banner {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,54 +46,54 @@ body {
   font-weight: 600;
 }
 
-.order-banner-text{
+.order-banner-text {
   margin: 0;
   flex: 1;
 }
 
-.order-banner-arrow{
+.order-banner-arrow {
   font-size: 18px;
 }
 
 /* ---------- HEADER ---------- */
-.top{
+.top {
   padding: 30px 20px 0;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.welcome{
+.welcome {
   margin: 0;
   font-size: 32px;
   font-weight: 400;
   letter-spacing: -1.92px;
 }
 
-.brand{
+.brand {
   font-family: Georgia, serif;
   font-style: italic;
 }
 
-.hours{
+.hours {
   font-size: 14px;
   color: #736A08;
   letter-spacing: 0.28px;
 }
 
 /* ---------- CATEGORY CHIPS ---------- */
-.chips{
+.chips {
   display: flex;
   gap: 8px;
   overflow-x: auto;
   padding: 8px 0;
 }
 
-.chips::-webkit-scrollbar{
+.chips::-webkit-scrollbar {
   display: none;
 }
 
-.chip{
+.chip {
   white-space: nowrap;
   padding: 6px 10px;
   border-radius: 8px;
@@ -103,39 +103,39 @@ body {
   font-size: 12px;
 }
 
-.chip.active{
+.chip.active {
   background: var(--pink);
 }
 
 /* ---------- PAGE ---------- */
-.page{
+.page {
   padding: 0 20px 90px;
 }
 
-.section{
+.section {
   margin-top: 24px;
 }
 
-.section-title{
+.section-title {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 10px;
 }
 
 /* ---------- CARD ROW ---------- */
-.card-row{
+.card-row {
   display: flex;
   gap: 12px;
   overflow-x: auto;
   padding-bottom: 8px;
 }
 
-.card-row::-webkit-scrollbar{
+.card-row::-webkit-scrollbar {
   display: none;
 }
 
 /* ---------- CARD ---------- */
-.card{
+.card {
   width: 170px;
   padding: 16px;
   display: flex;
@@ -147,14 +147,14 @@ body {
 }
 
 /* image wrapper */
-.card-img-wrap{
+.card-img-wrap {
   height: 106px;
   padding: 0;
   border: 1px solid var(--olive);
   border-radius: 4px;
 }
 
-.card-img{
+.card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -162,7 +162,7 @@ body {
 }
 
 /* ---------- CARD BOTTOM ---------- */
-.card-bottom{
+.card-bottom {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -170,7 +170,7 @@ body {
 }
 
 /* price + button row */
-.card-action{
+.card-action {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -178,7 +178,7 @@ body {
 }
 
 /* title */
-.card-name{
+.card-name {
   margin: 0;
   font-size: 14px;
   font-weight: 700;
@@ -186,7 +186,7 @@ body {
 }
 
 /* price */
-.card-price{
+.card-price {
   margin: 0;
   font-size: 14px;
   font-weight: 300;
@@ -194,7 +194,7 @@ body {
 }
 
 /* plus button */
-.add-btn{
+.add-btn {
   width: 24px;
   height: 24px;
   padding: 2px;
@@ -205,18 +205,18 @@ body {
 }
 
 /* link wrapper for cards */
-.card-link{
+.card-link {
   text-decoration: none;
   color: inherit;
   display: inline-block;
 }
 
-.section.is-hidden{
+.section.is-hidden {
   display: none;
 }
 
 /* Filtered category view: show all cards without horizontal scroll */
-.page.is-filtered .card-row{
+.page.is-filtered .card-row {
   overflow-x: visible;
   padding-bottom: 0;
   display: grid;
@@ -224,18 +224,18 @@ body {
   gap: 12px;
 }
 
-.page.is-filtered .card{
+.page.is-filtered .card {
   width: 100%;
 }
 
-@media (max-width: 380px){
-  .page.is-filtered .card-row{
+@media (max-width: 380px) {
+  .page.is-filtered .card-row {
     grid-template-columns: 1fr;
   }
 }
 
 /* ===== Bottom Navigation ===== */
-.bottom-nav{
+.bottom-nav {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -253,7 +253,7 @@ body {
   z-index: 100;
 }
 
-.nav-item{
+.nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -267,23 +267,23 @@ body {
   font-weight: 400;
 }
 
-.nav-icon{
+.nav-icon {
   width: 24px;
   height: 24px;
   object-fit: contain;
 }
 
 /* Active state */
-.nav-item.active{
+.nav-item.active {
   color: #736A08;
 }
 
-.nav-item.active .nav-icon{
+.nav-item.active .nav-icon {
   filter: brightness(0) saturate(100%) invert(42%) sepia(18%) saturate(1087%) hue-rotate(16deg);
 }
 
 /* shared icon button */
-.icon-btn{
+.icon-btn {
   width: 32px;
   height: 32px;
   display: flex;
@@ -301,7 +301,7 @@ body {
 }
 
 /* shared primary button */
-.primary-btn{
+.primary-btn {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -322,13 +322,13 @@ body {
 }
 
 /* ===== Bag badge (on bottom nav icon) ===== */
-.nav-icon-wrap{
+.nav-icon-wrap {
   position: relative;
   width: 24px;
   height: 24px;
 }
 
-.nav-badge{
+.nav-badge {
   position: absolute;
   top: -6px;
   right: -8px;
@@ -351,27 +351,27 @@ body {
   line-height: 1;
 }
 
-.nav-badge.is-hidden{
+.nav-badge.is-hidden {
   display: none;
 }
 
-@keyframes badgePulse{
-  0%   { transform: scale(1); }
-  30%  { transform: scale(1.25); }
-  60%  { transform: scale(0.95); }
-  100% { transform: scale(1); }
+@keyframes badgePulse {
+  0%    { transform: scale(1); }
+  30%   { transform: scale(1.25); }
+  60%   { transform: scale(0.95); }
+  100%  { transform: scale(1); }
 }
 
-.nav-badge.pulse{
+.nav-badge.pulse {
   animation: badgePulse 420ms ease;
 }
 
 /* ---------- quantity ---------- */
-.qty{
+.qty {
   width: 100%;
 }
 
-.qty-bar{
+.qty-bar {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -383,7 +383,7 @@ body {
   background: #F6F1BF;
 }
 
-.qty-label, .qty-value {
+.qty-label, .qty-value  {
   margin: 0;
   color: #45371F;
   font-family: "Karla", system-ui, sans-serif;
@@ -392,13 +392,13 @@ body {
   letter-spacing: -0.84px;
 }
 
-.qty-controls{
+.qty-controls {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.qty-num{
+.qty-num {
   margin: 0;
   color: #45371F;
   font-family: "Karla", system-ui, sans-serif;
@@ -407,7 +407,7 @@ body {
   letter-spacing: -0.84px;
 }
 
-.qty-btn{
+.qty-btn {
   width: 24px;
   height: 24px;
   padding: 2px;
@@ -426,4 +426,4 @@ body {
 }
 
 /* utility */
-.hidden{ display: none !important; }
+.hidden { display: none !important; }

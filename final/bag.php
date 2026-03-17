@@ -1,6 +1,7 @@
 <?php
   session_start();
   require_once "../db.php";
+  include "functions/items.php";
 
   if (!isset($_SESSION['bag'])) {
     $_SESSION['bag'] = [];
@@ -8,10 +9,10 @@
 
   if (isset($_GET['remove'])) {
     foreach ($_SESSION['bag'] as $key => $item) {
-        if ($item['id'] === $_GET['remove']) {
-            unset($_SESSION['bag'][$key]);
-            break;
-        }
+      if ($item['id'] === $_GET['remove']) {
+        unset($_SESSION['bag'][$key]);
+        break;
+      }
     }
     $_SESSION['bag'] = array_values($_SESSION['bag']);
     header('Location: bag.php');
@@ -74,77 +75,30 @@
 
     <?php if (empty($bag)) : ?>
       <!-- EMPTY STATE -->
-      <section id="bagEmpty" class="bag-empty" style="display:none;">
+      <section id="bagEmpty" class="bag-empty">
         <h2 class="bag-empty-title">Your bag is empty</h2>
         <p class="bag-empty-sub">Add items from the menu to start an order.</p>
-        <a class="primary-btn" href="index.php">Go to Menu</a>
+        <a class="primary-btn" href="menu.php">Go to Menu</a>
       </section>
     <?php else : ?>
-      <!-- ITEMS LIST (JS will fill) -->
+      <!-- ITEMS LIST -->
       <section id="bagList" class="bag-list">
         <?php foreach ($bag as $item) : ?>
-          <?php include 'functions/helpers/load_bag_item.php' ?>
+          <?php include 'components/bag_item.php' ?>
         <?php endforeach ?>
       </section>
     <?php endif; ?>
 
-    <!-- ADD A SIDE (horizontal scroll - static cards) -->
+    <!-- ADD A SIDE -->
     <section class="add-side">
-        <h2 class="add-side-title">WANT TO ADD A SIDE?</h2>
-    
-        <div class="add-side-row">
-        <article class="card">
-            <div class="card-img-wrap">
-            <img class="card-img" src="../assets/images/menu/sides/chip.webp" alt="Potato Chips">
-            </div>
-            <div class="card-bottom">
-            <p class="card-name">Potato Chips</p>
-            <div class="card-action">
-                <p class="card-price">$0.75</p>
-                <button class="add-btn" type="button" disabled>+</button>
-            </div>
-            </div>
-        </article>
-    
-        <article class="card">
-            <div class="card-img-wrap">
-            <img class="card-img" src="../assets/images/menu/sides/muffin.webp" alt="Muffin">
-            </div>
-            <div class="card-bottom">
-            <p class="card-name">Muffin</p>
-            <div class="card-action">
-                <p class="card-price">$1.75</p>
-                <button class="add-btn" type="button" disabled>+</button>
-            </div>
-            </div>
-        </article>
-    
-        <article class="card">
-            <div class="card-img-wrap">
-            <img class="card-img" src="../assets/images/menu/sides/hashbrown.webp" alt="Hashbrown">
-            </div>
-            <div class="card-bottom">
-            <p class="card-name">Hashbrown</p>
-            <div class="card-action">
-                <p class="card-price">$1.25</p>
-                <button class="add-btn" type="button" disabled>+</button>
-            </div>
-            </div>
-        </article>
-    
-        <article class="card">
-            <div class="card-img-wrap">
-            <img class="card-img" src="../assets/images/menu/sides/bagel.webp" alt="Bagel">
-            </div>
-            <div class="card-bottom">
-            <p class="card-name">Bagel</p>
-            <div class="card-action">
-                <p class="card-price">$2.00</p>
-                <button class="add-btn" type="button" disabled>+</button>
-            </div>
-            </div>
-        </article>
-        </div>
+      <h2 class="add-side-title">WANT TO ADD A SIDE?</h2>
+  
+      <?php $side_items = getItemsByCategory(3) ?>
+      <div class="add-side-row">
+        <?php foreach ($side_items as $item) : ?>
+          <?php include 'components/card.php' ?>
+        <?php endforeach ?>
+      </div>
     </section>
 
     <!-- TOTAL + CHECKOUT -->
@@ -154,7 +108,9 @@
         <span class="bag-total-value" id="bagTotal">$<?= number_format($subtotal, 2) ?></span>
       </div>
 
-      <a class="primary-btn" id="bagCheckout" href="phone.php">Proceed to Checkout</a>
+      <?php if (!empty($bag)) : ?>
+        <a class="primary-btn" id="bagCheckout" href="phone.php">Proceed to Checkout</a>
+      <?php endif ?>
     </section>
 
   </main>
@@ -177,6 +133,10 @@
     </a>
   </nav>
 
-  <script src="functions/js/quantity-counter.js"></script>
+  <script type="module">
+    import "../final/functions/js/quantity-counter.js";
+    import { mountPickupOptions } from "../final/functions/js/ui.js";
+    mountPickupOptions();
+  </script>
 </body>
 </html>
