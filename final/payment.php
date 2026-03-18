@@ -372,25 +372,25 @@
     });
     toggleCardForm();
 
-    // // PLACE ORDER
-    // placeOrderBtn.addEventListener("click", () => {
-    //   if (loadingOverlay) {
-    //     loadingOverlay.classList.add("active");
-    //   }
+    // PLACE ORDER
+    placeOrderBtn.addEventListener("click", () => {
+      if (loadingOverlay) {
+        loadingOverlay.classList.add("active");
+      }
 
-    //   const selectedPayment = document.querySelector(".payment-option.is-selected");
-    //   const isApplePay = selectedPayment?.dataset.payment === "applepay";
+      const selectedPayment = document.querySelector(".payment-option.is-selected");
+      const isApplePay = selectedPayment?.dataset.payment === "applepay";
 
-    //   if (isApplePay) {
-    //     applePayOverlay.classList.add("active");
-    //   }
+      if (isApplePay) {
+        applePayOverlay.classList.add("active");
+      }
 
-    //   const redirectDelay = isApplePay ? 2000 : 800;
-    //   setTimeout(() => {
-    //     if (loadingOverlay) loadingOverlay.classList.remove("active");
-    //     window.location.href = "confirmation.php";
-    //   }, redirectDelay);
-    // });
+      const redirectDelay = isApplePay ? 2000 : 800;
+      setTimeout(() => {
+        if (loadingOverlay) loadingOverlay.classList.remove("active");
+        window.location.href = "confirmation.php";
+      }, redirectDelay);
+    });
 
     applePayCloseBtn.addEventListener("click", () => {
       applePayOverlay.classList.remove("active");

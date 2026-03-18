@@ -47,6 +47,6 @@
     </section>
 
   </main>
-  <script type="module" src="./js/main.js"></script>
+  <script type="module" src="../final/functions/js/main.js"></script>
 </body>
 </html>

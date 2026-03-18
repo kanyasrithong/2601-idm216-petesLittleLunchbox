@@ -4,7 +4,7 @@
   ?>
 
   <article class="confirm-card">
-    <img class="confirm-card-img" src="../../../assets/images/<?= $item['img_url'] ?>" alt="<?= $item['item_name'] ?>" />
+    <img class="confirm-card-img" src="../assets/images/<?= $item['img_url'] ?>" alt="<?= $item['item_name'] ?>" />
 
     <div class="confirm-card-body">
       <div class="confirm-card-top">
