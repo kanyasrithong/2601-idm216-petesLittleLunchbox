@@ -86,9 +86,9 @@
       </section>
 
       <?php if (isset($_GET['replay'])) : ?>
-        <a class="primary-btn" href="<?php echo 'menu.php?replay=false' ?>" id="returnHomeBtn">Return Home</a>
+        <a class="primary-btn" href="<?php echo 'menu.php?replay=false' ?>" id="returnHomeBtn">Order Again</a>
       <?php else : ?>
-        <a class="primary-btn" href="<?php echo 'menu.php?replay=true' ?>" id="returnHomeBtn">Order Again</a>
+        <a class="primary-btn" href="<?php echo 'menu.php?replay=true' ?>" id="returnHomeBtn">Return Home</a>
       <?php endif ?>
     </div>
 

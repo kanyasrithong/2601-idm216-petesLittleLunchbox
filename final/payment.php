@@ -227,7 +227,7 @@
         <p class="summary-regular">$<span id="taxValue"><?= number_format($sales_tax, 2) ?></span></p>
       </div>
 
-      <form method="post" action="confirmation.php">
+      <form id="paymentForm" method="post" action="confirmation.php">
         <div class="summary-row total-row">
           <p class="total-label">Total</p>
           <p class="total-amount">$<span id="totalAmount"><?= number_format($total, 2) ?></span></p>
@@ -241,7 +241,7 @@
     <section class="payment-footer">
       <form method="post" action="confirmation.php">
         <input id="orderTotal" type="hidden" name="total" value="<?= number_format($total, 2) ?>">
-        <input class="primary-btn" id="placeOrderBtn" type="submit" value="Place Order"/>
+        <input class="primary-btn" id="placeOrderBtn" type="button" value="Place Order"/>
       </form>
     </section>
 
@@ -373,7 +373,9 @@
     toggleCardForm();
 
     // PLACE ORDER
-    placeOrderBtn.addEventListener("click", () => {
+    placeOrderBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
       if (loadingOverlay) {
         loadingOverlay.classList.add("active");
       }
@@ -388,7 +390,7 @@
       const redirectDelay = isApplePay ? 2000 : 800;
       setTimeout(() => {
         if (loadingOverlay) loadingOverlay.classList.remove("active");
-        window.location.href = "confirmation.php";
+          document.getElementById("paymentForm").submit(); // submit the form
       }, redirectDelay);
     });
 
