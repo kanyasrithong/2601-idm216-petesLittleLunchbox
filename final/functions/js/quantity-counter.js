@@ -47,7 +47,7 @@ document.querySelectorAll(".qty-controls.cart").forEach(control => {
 });
 
 function updateCart(id, quantity) {
-  fetch("../helpers/update_quantity.php", {
+  fetch("../final/functions/helpers/update_quantity.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
