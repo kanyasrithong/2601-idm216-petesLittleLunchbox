@@ -1,19 +1,3 @@
-import { getLastOrder } from "./app.js";
-
-function mountOrderBanner(){
-  const banner = document.getElementById("orderBanner");
-  if (!banner) return;
-
-  const last = getLastOrder();
-  if (last && last.items && last.items.length > 0){
-    banner.style.display = "flex";
-  } else {
-    banner.style.display = "none";
-  }
-}
-
-mountOrderBanner();
-
 function mountCategoryFilter(){
   const chips = Array.from(document.querySelectorAll(".chips .chip"));
   const page = document.querySelector("main.page");
