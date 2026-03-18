@@ -3,7 +3,7 @@
   ?>
   <article class="bag-item" data-id="<?= $item['id'] ?>">
     <div class="bag-item-row">
-      <img class="bag-item-img" src="../../../assets/images/<?= $item['img_url'] ?>" alt="<?= $item['item_name'] ?>" />
+      <img class="bag-item-img" src="../assets/images/<?= $item['img_url'] ?>" alt="<?= $item['item_name'] ?>" />
 
       <div class="bag-item-content">
         <div class="bag-item-topline">
@@ -42,8 +42,6 @@
         </div>
 
         <div class="bag-item-bottomline">
-          <a class="edit-btn" href="${item.editHref || "customize.html"}">EDIT ✎</a>
-
           <div class="qty-controls cart" data-id="<?= $item['id'] ?>">
             <button class="qty-btn minus" type="button" aria-label="Decrease quantity">
               <img src="../assets/images/icons/Minus.svg" alt="Subtract">

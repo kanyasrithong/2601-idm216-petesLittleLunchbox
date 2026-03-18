@@ -19,6 +19,7 @@
   }
 
   $categories = getCategories();
+  $drink_items = [];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +39,7 @@
 <body>
   <!-- ORDER CONFIRMATION BANNER -->
   <?php if (isset($_GET['replay']) && $_GET['replay'] === 'true') : ?>
-    <a id="orderBanner" class="order-banner" href="confirmation.php?replay=true" style="display:none;">
+    <a id="orderBanner" class="order-banner" href="confirmation.php?replay=true">
       <span class="order-banner-text">View your latest order confirmation</span>
       <span class="order-banner-arrow">
         <img src="../assets/images/icons/Forward.svg" alt="Forward">
@@ -73,22 +74,43 @@
   <!-- MAIN CONTENT -->
   <main class="page">
     <?php foreach ($categories as $category) : ?> 
-      <?php $category_items = getItemsByCategory($category['id']) ?>
+      <?php 
+        $category_items = getItemsByCategory($category['id']);
 
-      <section class="section" id="<?= $category['category_name'] ?>">
-        <h2 class="section-title"><?= strtoupper($category['category_name']) ?></h2>
+        if (str_contains(strtolower($category['category_name']), 'drink')) {
+          $drink_items = array_merge($drink_items, $category_items);
+        }
+      ?>
 
-        <div class="card-row">
-          <?php foreach ($category_items as $item) : ?>
+      <?php if (!str_contains(strtolower($category['category_name']), 'drink')) : ?>
+        <section class="section" id="<?= $category['category_name'] ?>">
+          <h2 class="section-title"><?= strtoupper($category['category_name']) ?></h2>
 
-            <a class="card-link" href="customize.php?item=<?= urlencode($item['item_name']) ?>">
-              <?php include 'components/card.php' ?>
-            </a>
-            
-          <?php endforeach ?>
-        </div>
-      </section>
+          <div class="card-row">
+            <?php foreach ($category_items as $item) : ?>
+
+              <a class="card-link" href="customize.php?item=<?= urlencode($item['item_name']) ?>">
+                <?php include 'components/card.php' ?>
+              </a>
+              
+            <?php endforeach ?>
+          </div>
+        </section>
+      <?php endif ?>
     <?php endforeach ?>
+    <section class="section" id="Drinks">
+      <h2 class="section-title">DRINKS</h2>
+
+      <div class="card-row">
+        <?php foreach ($drink_items as $item) : ?>
+
+          <a class="card-link" href="customize.php?item=<?= urlencode($item['item_name']) ?>">
+            <?php include 'components/card.php' ?>
+          </a>
+          
+        <?php endforeach ?>
+      </div>
+    </section>
   </main>
 
   <nav class="bottom-nav">
