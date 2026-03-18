@@ -48,10 +48,13 @@
     <?php endif; ?>
     <div class="order-calculations">
       <?php if ($variant_total != 0) $subtotal += $variant_total; ?>
-      <h2>Subtotal: $<?= number_format($subtotal, 2) ?></h2>
+      <h2>Subtotal: 
+        <span class="subtotal-value">$<?= number_format($subtotal, 2) ?></span>
+      </h2>
     </div>
   </section>
   <?php if (!empty($bag)) : ?>
     <a href="payment.php">Proceed to Checkout</a>
   <?php endif ?>
+  <script src="functions/js/quantity-counter.js"></script>
 </body>

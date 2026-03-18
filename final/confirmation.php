@@ -1,3 +1,19 @@
+<?php
+  session_start();
+
+  // set bag to session bag or order depending on replay
+  !empty($_SESSION['bag']) ? $bag = $_SESSION['bag'] : $bag = $_SESSION['order'];
+
+  $total = 0;
+
+  if (!empty($_POST['total'])) {
+    $_SESSION['total'] = $_POST['total'];
+    $_POST['total'] = '';
+  }
+
+  $total = $_SESSION['total'] ?? 0.0;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,71 +71,28 @@
 
     <h2 class="order-title">Your Order</h2>
 
-    <!-- JS renders the simple order card(s) here -->
-    <section id="confirmList" class="confirm-list"></section>
+    <!-- PHP renders order items -->
+    <section id="confirmList" class="confirm-list">
+      <?php foreach ($bag as $item) : ?>
+        <?php include 'components/order_item.php' ?>
+      <?php endforeach ?>
+    </section>
 
     <!-- bottom -->
     <div class="confirm-bottom">
       <section class="total-row">
         <span class="total-label">Total</span>
-        <span class="total-value" id="confirmTotal">$0.00</span>
+        <span class="total-value" id="confirmTotal">$<?= number_format($total, 2) ?></span>
       </section>
 
-      <a class="primary-btn" href="index.html" id="returnHomeBtn">Return Home</a>
+      <?php if (isset($_GET['replay'])) : ?>
+        <a class="primary-btn" href="<?php echo 'menu.php?replay=false' ?>" id="returnHomeBtn">Order Again</a>
+      <?php else : ?>
+        <a class="primary-btn" href="<?php echo 'menu.php?replay=true' ?>" id="returnHomeBtn">Return Home</a>
+      <?php endif ?>
     </div>
 
   </main>
-
-  <script type="module">
-    import { getCart, getLastOrder } from "./js/app.js";
-
-    const list = document.getElementById("confirmList");
-    const totalEl = document.getElementById("confirmTotal");
-    const orderNumEl = document.getElementById("orderNumber");
-    const readyByText = document.getElementById("readyByText");
-
-    // Prefer the saved snapshot from payment page
-    const last = getLastOrder();
-    const items = (last && Array.isArray(last.items)) ? last.items : getCart();
-
-    if (last?.orderNumber) orderNumEl.textContent = String(last.orderNumber);
-    if (last?.readyBy) readyByText.textContent = `Est Ready by: ${last.readyBy}`;
-
-    if (!items || items.length === 0) {
-      list.innerHTML = `<p class="confirm-empty">Your cart was empty.</p>`;
-      totalEl.textContent = "$0.00";
-    } else {
-      list.innerHTML = items.map(item => {
-        const price = Number(item.price || 0);
-        const qty = Number(item.qty || 1);
-        const lineTotal = price * qty;
-        const subtitle = item.subtitle ? item.subtitle : "";
-
-        return `
-          <article class="confirm-card">
-            <img class="confirm-card-img" src="${item.img}" alt="${item.name}" />
-            <div class="confirm-card-body">
-              <div class="confirm-card-top">
-                <div class="confirm-card-text">
-                  <p class="confirm-card-name">${item.name}</p>
-                  ${subtitle ? `<p class="confirm-card-sub">${subtitle}</p>` : ``}
-                </div>
-                <p class="confirm-card-price">$${lineTotal.toFixed(2)}</p>
-              </div>
-
-              <p class="confirm-card-qty">Qty: ${qty}</p>
-            </div>
-          </article>
-        `;
-      }).join("");
-
-      const total = (last && typeof last.total === "number")
-        ? last.total
-        : items.reduce((sum, item) => sum + (Number(item.price || 0) * (item.qty || 1)), 0);
-
-      totalEl.textContent = `$${total.toFixed(2)}`;
-    }
-  </script>
 
   <script>
     const isReplay = new URLSearchParams(window.location.search).get("replay") === "true";

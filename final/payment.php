@@ -1,3 +1,25 @@
+<?php
+  session_start();
+  require_once "../db.php";
+
+  $bag = $_SESSION['bag'];
+  $items_total = 0;
+  $tax_percent = 0.08;
+  $tip_percentage = 0;
+
+  // calculate item totals
+  foreach ($bag as $item ) {
+    $variants = $item['variants'] ?? [];
+    $variant_total = 0;
+
+    foreach ($variants as $variant) {
+      $variant_total += $variant['add_price'];
+    }
+
+    $item_total = $item['item_quantity'] * ($item['item_total'] + $variant_total);
+    $items_total += $item_total;
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +30,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/payment.css" />
 
-  <!-- tiny helper styles just for the custom tip input -->
+  <!-- helper styles just for custom tip input -->
   <style>
     .tip-box.custom .custom-tip-input-wrap{
       display: none;
@@ -41,7 +63,7 @@
 
     <!-- back -->
     <header class="payment-topbar">
-      <a class="icon-btn" href="phone.html" aria-label="Back">‹</a>
+      <a class="icon-btn" href="phone.php" aria-label="Back">‹</a>
     </header>
 
     <!-- title -->
@@ -61,8 +83,8 @@
       </div>
 
       <div class="payment-option" data-payment="paypal">
-        <img class="payment-icon" src="../assets/images/icons/paypal.png" alt="Paypal" />
-        <span class="payment-text">Paypal</span>
+        <img class="payment-icon" src="../assets/images/icons/paypal.png" alt="PayPal" />
+        <span class="payment-text">PayPal</span>
       </div>
 
       <div class="payment-option" data-payment="venmo">
@@ -72,7 +94,7 @@
 
     </section>
 
-    <section class="card-form-wrap" id="cardFormWrap" autocomplete="off">
+    <section class="card-form-wrap is-hidden" id="cardFormWrap" autocomplete="off">
       <div class="card-form-grid">
         <div class="field-group full">
           <label class="field-label" for="cardName">Name on Card</label>
@@ -81,7 +103,7 @@
 
         <div class="field-group full">
           <label class="field-label" for="cardNumber">Card Number</label>
-          <input class="field-input" id="cardNumber" type="text" inputmode="numeric" placeholder="1234 5678 9012 3456" autocomplete="off" />
+          <input class="field-input" id="cardNumber" type="number" inputmode="numeric" placeholder="1234 5678 9012 3456" autocomplete="off" />
         </div>
 
         <div class="field-group">
@@ -130,25 +152,30 @@
 
     <!-- tip section -->
     <section class="tip-section">
+      <?php
+        $tip_10 = $items_total * 0.1;
+        $tip_15 = $items_total * 0.15;
+        $tip_20 = $items_total * 0.2;
+      ?>
       <h2 class="tip-title">Add Tip?</h2>
 
       <div class="tip-row">
         <div class="tip-box" data-tip-percent="10">
           <p class="tip-percent">10%</p>
-          <p class="tip-amount" id="tip10Text">$0.00</p>
+          <p class="tip-amount">$<span class="tip-value"><?= number_format($tip_10, 2) ?></span></p>
         </div>
 
         <div class="tip-box" data-tip-percent="15">
           <p class="tip-percent">15%</p>
-          <p class="tip-amount" id="tip15Text">$0.00</p>
+          <p class="tip-amount" id="tip15Text">$<span class="tip-value"><?= number_format($tip_15, 2) ?></span></p>
         </div>
 
         <div class="tip-box" data-tip-percent="20">
           <p class="tip-percent">20%</p>
-          <p class="tip-amount" id="tip20Text">$0.00</p>
+          <p class="tip-amount" id="tip20Text">$<span class="tip-value"><?= number_format($tip_20, 2) ?></span></p>
         </div>
 
-        <!-- Custom tip box -->
+        <!-- custom tip box -->
         <div class="tip-box custom" data-tip-custom="1">
           <p class="tip-percent">Custom</p>
 
@@ -165,38 +192,57 @@
             />
           </div>
         </div>
+
       </div>
     </section>
 
     <!-- dashed pink divider -->
     <div class="divider-pink" aria-hidden="true"></div>
 
-    <!-- summary (NOW MATCHES CART) -->
+    <!-- Summary -->
     <section class="summary">
 
-      <!-- JS will render item lines here -->
-      <div id="summaryItems"></div>
+      <?php 
+        foreach ($bag as $item) {
+          include 'components/summary_item.php';
+        }
+
+        $tip = $items_total * $tip_percentage;
+        $sales_tax = $items_total * $tax_percent;
+        $total = $items_total + $sales_tax + $tip;
+      ?>
 
       <div class="summary-row">
-        <p class="summary-regular" id="tipLabel">Tip (0%)</p>
-        <p class="summary-regular" id="tipValue">$0.00</p>
+        <p class="summary-regular" id="tipLabel">Tip (<?= $tip_percentage ?>%)</p>
+        <p class="summary-regular">$<span id="tipValue"><?= number_format($tip, 2) ?></span></p>
+      </div>
+
+      <div class="summary-row hidden">
+        <p class="summary-regular">Pretax</p>
+        <p class="summary-regular">$<span id="pretaxValue"><?= number_format($items_total, 2) ?></span></p>
       </div>
 
       <div class="summary-row">
         <p class="summary-regular">Tax</p>
-        <p class="summary-regular" id="taxValue">$1.34</p>
+        <p class="summary-regular">$<span id="taxValue"><?= number_format($sales_tax, 2) ?></span></p>
       </div>
 
-      <div class="summary-row total-row">
-        <p class="total-label">Total</p>
-        <p class="total-amount" id="totalAmount">$0.00</p>
-      </div>
+      <form id="paymentForm" method="post" action="confirmation.php">
+        <div class="summary-row total-row">
+          <p class="total-label">Total</p>
+          <p class="total-amount">$<span id="totalAmount"><?= number_format($total, 2) ?></span></p>
+        </div>
+        <input type="hidden" name="total" value="<?= number_format($total, 2) ?>">
+      </form>
 
     </section>
 
     <!-- button -->
-  <section class="payment-footer">
-      <button class="primary-btn" id="placeOrderBtn">Place Order</button>
+    <section class="payment-footer">
+      <form method="post" action="confirmation.php">
+        <input id="orderTotal" type="hidden" name="total" value="<?= number_format($total, 2) ?>">
+        <input class="primary-btn" id="placeOrderBtn" type="button" value="Place Order"/>
+      </form>
     </section>
 
   </main>
@@ -256,18 +302,13 @@
     </div>
   </div>
 
-  <!-- ✅ Main logic -->
+  <script src="functions/js/update-tip.js"></script>
   <script type="module">
-    import { getCart, saveLastOrder, clearCart } from "./js/app.js";
-
-    const TAX = 1.34; // keep your demo tax
-
     const placeOrderBtn = document.getElementById("placeOrderBtn");
     const applePayOverlay = document.getElementById("applePayOverlay");
     const applePayCloseBtn = document.getElementById("applePayCloseBtn");
     const loadingOverlay = document.getElementById("loadingOverlay");
 
-    const summaryItems = document.getElementById("summaryItems");
     const tipLabel = document.getElementById("tipLabel");
     const tipValue = document.getElementById("tipValue");
     const taxValue = document.getElementById("taxValue");
@@ -279,103 +320,10 @@
     const tip20Text = document.getElementById("tip20Text");
     const customTipInput = document.getElementById("customTipInput");
 
-    function subtotalFromCart(cart){
-      return cart.reduce((sum, item) => sum + (Number(item.price || 0) * (item.qty || 1)), 0);
-    }
-
-    function renderCartSummary(cart){
-      if (!summaryItems) return;
-
-      if (!cart || cart.length === 0){
-        summaryItems.innerHTML = `
-          <div class="summary-row">
-            <p class="summary-regular">Your cart is empty</p>
-            <p class="summary-regular">$0.00</p>
-          </div>
-        `;
-        return;
-      }
-
-      summaryItems.innerHTML = cart.map(item => {
-        const name = item.name || "Item";
-        const subtitle = item.subtitle ? String(item.subtitle) : "";
-        const qty = Number(item.qty || 1);
-        const price = Number(item.price || 0);
-        const lineTotal = price * qty;
-
-        return `
-          <div class="summary-row">
-            <div class="summary-left">
-              <p class="summary-bold">${qty}x ${escapeHtml(name)}</p>
-              ${subtitle ? `<p class="summary-bold">${escapeHtml(subtitle)}</p>` : ``}
-            </div>
-            <div class="summary-right">
-              <p class="summary-bold">$${lineTotal.toFixed(2)}</p>
-            </div>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function escapeHtml(str) {
-      return String(str)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
-
     function getSelectedTipMode(){
       const selected = document.querySelector(".tip-box.is-selected");
       if (!selected) return { type: "percent", value: 0 };
-
-      if (selected.dataset.tipCustom === "1"){
-        const v = Number(customTipInput?.value || 0);
-        return { type: "custom", value: Math.max(0, v) };
-      }
-
-      const p = Number(selected.dataset.tipPercent || 0);
-      return { type: "percent", value: Math.max(0, p) };
     }
-
-    function renderTipBoxAmounts(subtotal){
-      if (tip10Text) tip10Text.textContent = `$${(subtotal * 0.10).toFixed(2)}`;
-      if (tip15Text) tip15Text.textContent = `$${(subtotal * 0.15).toFixed(2)}`;
-      if (tip20Text) tip20Text.textContent = `$${(subtotal * 0.20).toFixed(2)}`;
-    }
-
-    function renderTotals(){
-      const cart = getCart();
-      const subtotal = subtotalFromCart(cart);
-      renderTipBoxAmounts(subtotal);
-
-      const mode = getSelectedTipMode();
-      const tip = (mode.type === "custom")
-        ? mode.value
-        : subtotal * (mode.value / 100);
-
-      const total = subtotal + tip + TAX;
-
-      if (taxValue) taxValue.textContent = `$${TAX.toFixed(2)}`;
-      if (tipValue) tipValue.textContent = `$${tip.toFixed(2)}`;
-
-      if (tipLabel){
-        if (mode.type === "custom") tipLabel.textContent = `Tip (Custom)`;
-        else tipLabel.textContent = `Tip (${mode.value}%)`;
-      }
-
-      if (totalAmount) totalAmount.textContent = `$${total.toFixed(2)}`;
-      if (applePayAmount) applePayAmount.textContent = `$${total.toFixed(2)}`;
-    }
-
-    // INITIAL RENDER
-    const cartInit = getCart();
-    renderCartSummary(cartInit);
-    taxValue.textContent = `$${TAX.toFixed(2)}`;
-
-    // default: no tip selected
-    renderTotals();
 
     // TIP SELECTION (and custom input behavior)
     const tipBoxes = document.querySelectorAll(".tip-box");
@@ -388,24 +336,21 @@
         if (box.dataset.tipCustom === "1" && customTipInput){
           customTipInput.focus();
         }
-
-        renderTotals();
       });
     });
 
     if (customTipInput){
-      customTipInput.addEventListener("input", () => {
-        // if they type, ensure custom is selected
-        const customBox = document.querySelector('.tip-box[data-tip-custom="1"]');
-        if (customBox && !customBox.classList.contains("is-selected")){
-          document.querySelectorAll(".tip-box").forEach(b => b.classList.remove("is-selected"));
-          customBox.classList.add("is-selected");
-        }
-        renderTotals();
-      });
+      customTipInput.addEventListener("input", formatCurrency);
+
+      function formatCurrency(input) {
+        const cents = parseInt(input.target.value.replace(/\D/g, ""), 10) || 0;
+        input.target.dataset.cents = cents;
+        input.target.value = (cents / 100).toFixed(2);
+        updateTip(cents / 100);
+      }
     }
 
-    // PAYMENT SELECTION (styling only)
+    // PAYMENT SELECTION
     const paymentOptions = document.querySelectorAll(".payment-option");
     const cardFormWrap = document.getElementById("cardFormWrap");
 
@@ -428,7 +373,9 @@
     toggleCardForm();
 
     // PLACE ORDER
-    placeOrderBtn.addEventListener("click", () => {
+    placeOrderBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
       if (loadingOverlay) {
         loadingOverlay.classList.add("active");
       }
@@ -440,35 +387,10 @@
         applePayOverlay.classList.add("active");
       }
 
-      const cart = getCart();
-      const subtotal = subtotalFromCart(cart);
-
-      const mode = getSelectedTipMode();
-      const tip = (mode.type === "custom")
-        ? mode.value
-        : subtotal * (mode.value / 100);
-
-      const total = subtotal + tip + TAX;
-
-      saveLastOrder({
-        orderNumber: 32,
-        readyBy: "11:00am",
-        items: cart,
-        subtotal,
-        tipType: mode.type,
-        tipValue: mode.value,
-        tip,
-        tax: TAX,
-        total
-      });
-
-      // clear cart AFTER placing order
-      clearCart();
-
       const redirectDelay = isApplePay ? 2000 : 800;
       setTimeout(() => {
         if (loadingOverlay) loadingOverlay.classList.remove("active");
-        window.location.href = "confirmation.html";
+          document.getElementById("paymentForm").submit(); // submit the form
       }, redirectDelay);
     });
 

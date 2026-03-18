@@ -2,12 +2,12 @@
    CONFIRMATION PAGE (clean mock style)
    ========================= */
 
-   .confirmation-body{
+   .confirmation-body {
     background: #FBF6E9;
     color: #252203;
   }
   
-  .confirm-page{
+  .confirm-page {
     min-height: 100vh;
     padding: 56px 20px 32px;
     display: flex;
@@ -16,14 +16,14 @@
   }
   
   /* hero */
-  .confirm-hero{
+  .confirm-hero {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
   }
   
-  .confirm-hero-title{
+  .confirm-hero-title {
     margin: 0;
     font-family: "Karla", system-ui, sans-serif;
     font-size: 28px;
@@ -32,7 +32,7 @@
     text-align: center;
   }
   
-  .confirm-hero-number{
+  .confirm-hero-number {
     font-family: "Karla", system-ui, sans-serif;
     font-size: 92px;
     font-weight: 700;
@@ -40,7 +40,7 @@
     line-height: 1;
   }
   
-  .confirm-address{
+  .confirm-address {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -51,15 +51,15 @@
     text-decoration: none;
   }
   
-  .confirm-pin{
+  .confirm-pin {
     font-size: 18px;
   }
-  .confirm-ext{
+  .confirm-ext {
     margin-left: 2px;
   }
   
   /* Pickup status card */
-  .pickup-card{
+  .pickup-card {
     width: 100%;
     padding: 16px;
     border-radius: 12px;
@@ -71,7 +71,7 @@
     gap: 18px;
   }
   
-  .pickup-heading{
+  .pickup-heading {
     margin: 0;
     color: #252203;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
@@ -80,7 +80,7 @@
     letter-spacing: 0.28px;
   }
   
-  .pickup-sub{
+  .pickup-sub {
     margin: 6px 0 0;
     color: #45371F;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
@@ -89,17 +89,17 @@
     letter-spacing: 0.28px;
   }
   
-  .pickup-progress{
+  .pickup-progress {
     width: 100%;
   }
   
-  .progress-row{
+  .progress-row {
     width: 100%;
     display: flex;
     align-items: center;
   }
   
-  .dot{
+  .dot {
     width: 22px;
     height: 22px;
     border-radius: 999px;
@@ -109,11 +109,11 @@
     transition: background 0.3s ease;
   }
   
-  .dot-active{
+  .dot-active {
     background: #B9AC19;
   }
   
-  .line{
+  .line {
     height: 2px;
     background: #252203;
     flex: 1;
@@ -123,7 +123,7 @@
   }
 
   /* animated fill layer */
-  .line::after {
+  .line::after  {
     content: "";
     position: absolute;
     top: 0;
@@ -134,18 +134,18 @@
     transition: width 0.4s ease;
   }
 
-  .line-active::after {
+  .line-active::after  {
     width: 100%;
   }
   
-  .progress-labels{
+  .progress-labels {
     margin-top: 10px;
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
   
-  .progress-label{
+  .progress-label {
     color: #45371F;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
     font-size: 14px;
@@ -154,7 +154,7 @@
   }
   
   /* section title */
-  .order-title{
+  .order-title {
     margin: 6px 0 0;
     text-align: center;
     color: #252203;
@@ -165,21 +165,21 @@
   }
   
   /* list */
-  .confirm-list{
+  .confirm-list {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
   
-  .confirm-empty{
+  .confirm-empty {
     margin: 0;
     font-family: Satoshi, system-ui, sans-serif;
     color: #45371F;
   }
   
   /* clean card like your mock (no edit/trash/qty buttons) */
-  .confirm-card{
+  .confirm-card {
     width: 100%;
     background: rgba(255,255,255,0.55);
     border-radius: 12px;
@@ -190,7 +190,7 @@
     align-items: center;
   }
   
-  .confirm-card-img{
+  .confirm-card-img {
     width: 78px;
     height: 78px;
     border-radius: 10px;
@@ -199,21 +199,22 @@
     flex-shrink: 0;
   }
   
-  .confirm-card-body{
+  .confirm-card-body {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
   
-  .confirm-card-top{
+  .confirm-card-top {
     display: flex;
     justify-content: space-between;
     gap: 10px;
     align-items: flex-start;
+    width: 100%;
   }
   
-  .confirm-card-name{
+  .confirm-card-name {
     margin: 0;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
     font-size: 16px;
@@ -221,8 +222,13 @@
     letter-spacing: 0.2px;
     color: #252203;
   }
+
+  .confirm-card-addons {
+    display: flex;
+    flex-direction: column;
+  }
   
-  .confirm-card-sub{
+  .confirm-card-addon {
     margin: 6px 0 0;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
     font-size: 14px;
@@ -231,7 +237,7 @@
     color: #45371F;
   }
   
-  .confirm-card-price{
+  .confirm-card-price {
     margin: 0;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
     font-size: 16px;
@@ -240,7 +246,7 @@
     white-space: nowrap;
   }
   
-  .confirm-card-qty{
+  .confirm-card-qty {
     margin: 0;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
     font-size: 14px;
@@ -248,21 +254,21 @@
   }
   
   /* bottom area */
-  .confirm-bottom{
+  .confirm-bottom {
     margin-top: auto;
     display: flex;
     flex-direction: column;
     gap: 14px;
   }
   
-  .total-row{
+  .total-row {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   
-  .total-label{
+  .total-label {
     color: #736A08;
     font-family: "Karla", system-ui, sans-serif;
     font-size: 24px;
@@ -270,7 +276,7 @@
     letter-spacing: -1px;
   }
   
-  .total-value{
+  .total-value {
     color: #736A08;
     font-family: "Karla", system-ui, sans-serif;
     font-size: 32px;
@@ -279,6 +285,6 @@
   }
   
   /* button full width */
-  .primary-btn{
+  .primary-btn {
     width: 100%;
   }

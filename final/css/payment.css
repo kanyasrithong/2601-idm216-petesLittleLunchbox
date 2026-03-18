@@ -2,13 +2,13 @@
    PAYMENT PAGE
    ========================= */
 
-   .payment{
+   .payment {
     background: #FBF6E9;
     color: #45371F;
   }
   
   /* overall frame */
-  .payment-page{
+  .payment-page {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@
   }
   
   /* title */
-  .payment-title{
+  .payment-title {
     margin: 0;
     color: #252203;
     font-family: "Karla", system-ui, sans-serif;
@@ -30,7 +30,7 @@
   }
   
   /* payment methods wrapper */
-  .payment-methods{
+  .payment-methods {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@
     gap: 8px;
   }
 
-  .card-form-wrap{
+  .card-form-wrap {
     width: 100%;
     border: 1px solid #B9AC19;
     border-radius: 8px;
@@ -54,7 +54,7 @@
     overflow: hidden;
   }
 
-  .card-form-wrap.is-hidden{
+  .card-form-wrap.is-hidden {
     max-height: 0;
     opacity: 0;
     margin-top: -31px;
@@ -63,7 +63,7 @@
     border-width: 0;
   }
 
-  .card-form-heading{
+  .card-form-heading {
     margin: 4px 0 0;
     color: #736A08;
     font-family: "Karla", system-ui, sans-serif;
@@ -72,24 +72,24 @@
     letter-spacing: -0.7px;
   }
 
-  .card-form-grid{
+  .card-form-grid {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
   }
 
-  .field-group{
+  .field-group {
     display: flex;
     flex-direction: column;
     gap: 6px;
   }
 
-  .field-group.full{
+  .field-group.full {
     grid-column: 1 / -1;
   }
 
-  .field-label{
+  .field-label {
     color: #45371F;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
     font-size: 12px;
@@ -97,7 +97,7 @@
     letter-spacing: 0.2px;
   }
 
-  .field-input{
+  .field-input {
     width: 100%;
     border: 1px solid #B9AC19;
     border-radius: 8px;
@@ -111,17 +111,17 @@
     transition: border-color 140ms ease, box-shadow 140ms ease;
   }
 
-  .field-input::placeholder{
+  .field-input::placeholder {
     color: #8A7C5E;
   }
 
-  .field-input:focus{
+  .field-input:focus {
     border-color: #736A08;
     box-shadow: 0 0 0 2px rgba(185, 172, 25, 0.15);
   }
   
   /* individual payment option */
-  .payment-option{
+  .payment-option {
     width: 100%;
     display: flex;
     align-items: center;
@@ -133,7 +133,7 @@
   }
   
   /* icon box inside option */
-  .payment-icon{
+  .payment-icon {
     width: 45px;
     height: 30px;
     border-radius: 2px;
@@ -143,7 +143,7 @@
   }
   
   /* payment text */
-  .payment-text{
+  .payment-text {
     color: #45371F;
     font-family: "Karla", system-ui, sans-serif;
     font-size: 14px;
@@ -153,7 +153,7 @@
   }
   
   /* olive divider (8px spacing above/below) */
-  .divider-olive{
+  .divider-olive {
     width: 100%;
     height: 0;
     border-top: 1px solid #B9AC19;
@@ -161,16 +161,16 @@
   }
   
   /* TIP SECTION */
-  .tip-section{
+  .tip-section {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 32px;
+    gap: 16px;
   }
   
   /* Add Tip? */
-  .tip-title{
+  .tip-title {
     margin: 0;
     color: #45371F;
     font-family: "Karla", system-ui, sans-serif;
@@ -180,7 +180,7 @@
   }
   
   /* tip boxes row */
-  .tip-row{
+  .tip-row {
     width: 100%;
     display: flex;
     align-items: stretch;
@@ -189,7 +189,7 @@
   }
   
   /* single tip box */
-  .tip-box{
+  .tip-box {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -203,7 +203,7 @@
     height: auto;
   }
   
-  .tip-percent{
+  .tip-percent {
     margin: 0;
     color: #45371F;
     text-align: center;
@@ -213,7 +213,7 @@
     letter-spacing: 0.28px;
   }
   
-  .tip-amount{
+  .tip-amount {
     margin: 0;
     color: #45371F;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
@@ -223,7 +223,7 @@
   }
   
   /* dashed pink divider */
-  .divider-pink{
+  .divider-pink {
     width: 100%;
     height: 0;
     border-top: 1px dashed #FCC5BE;
@@ -231,34 +231,28 @@
   }
   
   /* SUMMARY */
-  .summary{
+  .summary {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
   
-  .summary-row{
+  .summary-row {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
-  .summary-left,
-  .summary-right{
+
+  .summary-item {
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
   
-  .summary-right{
-    text-align: right;
-    align-items: flex-end;
-  }
-  
   /* bold item lines + prices */
-  .summary-bold{
+  .summary-bold {
     margin: 0;
     color: #45371F;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
@@ -268,7 +262,7 @@
   }
   
   /* regular rows (Tip/Tax) */
-  .summary-regular{
+  .summary-regular {
     margin: 0;
     color: #45371F;
     font-family: Satoshi, system-ui, "Karla", sans-serif;
@@ -278,11 +272,11 @@
   }
   
   /* total row */
-  .total-row{
+  .total-row {
     margin-top: 16px;
   }
   
-  .total-label{
+  .total-label {
     margin: 0;
     color: #736A08;
     font-family: "Karla", system-ui, sans-serif;
@@ -291,7 +285,7 @@
     letter-spacing: -1.44px;
   }
   
-  .total-amount{
+  .total-amount {
     margin: 0;
     color: #736A08;
     font-family: "Karla", system-ui, sans-serif;
@@ -301,12 +295,12 @@
   }
   
   /* footer spacing */
-  .payment-footer{
+  .payment-footer {
     width: 100%;
     margin-top: 10px;
   }
 
-  .loading-overlay{
+  .loading-overlay {
     position: fixed;
     inset: 0;
     background: rgba(251, 246, 233, 0.7);
@@ -319,12 +313,12 @@
     z-index: 9000;
   }
 
-  .loading-overlay.active{
+  .loading-overlay.active {
     opacity: 1;
     pointer-events: auto;
   }
 
-  .loading-spinner{
+  .loading-spinner {
     width: 34px;
     height: 34px;
     border-radius: 999px;
@@ -333,8 +327,8 @@
     animation: spinner-rotate 0.8s linear infinite;
   }
 
-  @keyframes spinner-rotate{
-    to{
+  @keyframes spinner-rotate {
+    to {
       transform: rotate(360deg);
     }
   }
@@ -344,7 +338,7 @@
    REALISTIC APPLE PAY SHEET
    ========================= */
 
-   .applepay-overlay{
+   .applepay-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.45);
@@ -357,12 +351,12 @@
     z-index: 9999;
   }
   
-  .applepay-overlay.active{
+  .applepay-overlay.active {
     opacity: 1;
     pointer-events: auto;
   }
   
-  .applepay-sheet{
+  .applepay-sheet {
     width: 100%;
     background: #e9e9ea;              /* light iOS gray */
     border-radius: 26px 26px 0 0;
@@ -373,26 +367,26 @@
     box-shadow: 0 -10px 30px rgba(0,0,0,0.18);
   }
   
-  .applepay-overlay.active .applepay-sheet{
+  .applepay-overlay.active .applepay-sheet {
     transform: translateY(0);
   }
   
   /* header */
-  .applepay-header{
+  .applepay-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 14px;
   }
   
-  .applepay-logo{
+  .applepay-logo {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-size: 34px;
     font-weight: 700;
     color: #000;
   }
   
-  .applepay-close{
+  .applepay-close {
     width: 44px;
     height: 44px;
     border-radius: 999px;
@@ -408,7 +402,7 @@
   }
   
   /* apple pay rounded cards */
-  .applepay-card{
+  .applepay-card {
     background: rgba(255,255,255,0.9);
     border-radius: 18px;
     padding: 14px 14px;
@@ -418,66 +412,66 @@
     margin-bottom: 12px;
   }
   
-  .applepay-card-left{
+  .applepay-card-left {
     display: flex;
     align-items: center;
     gap: 12px;
   }
   
-  .applepay-card-icon{
+  .applepay-card-icon {
     width: 34px;
     height: 24px;
     border-radius: 6px;
     background: linear-gradient(135deg, #8a2be2, #ff2a68);
   }
   
-  .applepay-card-title{
+  .applepay-card-title {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-size: 18px;
     font-weight: 600;
     color: #111;
   }
   
-  .applepay-card-right{
+  .applepay-card-right {
     display: flex;
     align-items: center;
     gap: 10px;
   }
   
-  .applepay-dots{
+  .applepay-dots {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-size: 18px;
     color: #333;
   }
   
-  .applepay-chevron{
+  .applepay-chevron {
     font-size: 26px;
     color: #9a9a9a;
     line-height: 1;
   }
   
   /* amount area */
-  .applepay-meta{
+  .applepay-meta {
     margin-top: 10px;
     position: relative;
     padding: 10px 0 0;
   }
   
-  .applepay-company{
+  .applepay-company {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     color: #9b9b9b;
     font-size: 18px;
     margin-bottom: 4px;
   }
   
-  .applepay-amount{
+  .applepay-amount {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-size: 44px;
     font-weight: 800;
     color: #000;
   }
   
-  .applepay-info{
+  .applepay-info {
     position: absolute;
     right: 0;
     top: 16px;
@@ -494,7 +488,7 @@
   }
   
   /* face id section */
-  .applepay-faceid{
+  .applepay-faceid {
     margin-top: 18px;
     display: flex;
     flex-direction: column;
@@ -503,20 +497,20 @@
     padding-top: 6px;
   }
   
-  .faceid-icon{
+  .faceid-icon {
     width: 56px;
     height: 56px;
     position: relative;
   }
   
-  .faceid-box{
+  .faceid-box {
     position: absolute;
     inset: 0;
     border: 3px solid #2f6cff;
     border-radius: 14px;
   }
   
-  .faceid-smile{
+  .faceid-smile {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -530,7 +524,7 @@
     border-radius: 0 0 20px 20px;
   }
   
-  .faceid-text{
+  .faceid-text {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-size: 18px;
     color: #000;
@@ -542,40 +536,40 @@
    ========================= */
 
 /* payment options clickable */
-.payment-option{
+.payment-option {
     cursor: pointer;
     transition: background 180ms ease, transform 120ms ease;
   }
   
-  .payment-option:active{
+  .payment-option:active {
     transform: scale(0.99);
   }
   
   /* selected state */
-  .payment-option.is-selected{
+  .payment-option.is-selected {
     background: #F6F1BF; /* same as ASAP selected */
   }
   
   /* tip boxes clickable */
-  .tip-box{
+  .tip-box {
     cursor: pointer;
     transition: background 180ms ease, transform 120ms ease;
   }
   
-  .tip-box:active{
+  .tip-box:active {
     transform: scale(0.98);
   }
   
-  .tip-box.is-selected{
+  .tip-box.is-selected {
     background: #F6F1BF;
   }
 
-  @media (max-width: 420px){
-    .card-form-grid{
+  @media (max-width: 420px) {
+    .card-form-grid {
       grid-template-columns: 1fr;
     }
 
-    .field-group.full{
+    .field-group.full {
       grid-column: auto;
     }
   }

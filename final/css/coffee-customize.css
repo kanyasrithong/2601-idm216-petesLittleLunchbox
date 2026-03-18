@@ -2,18 +2,18 @@
 @import url("customize.css");
 
 /* smoother slide-out */
-.customize-page{
+.customize-page {
   transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
               opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, opacity;
 }
 
-body.page-exit .customize-page{
+body.page-exit .customize-page {
   transform: translateX(120%);
   opacity: 0;
 }
 
-.customize{
+.customize {
   overflow-x: hidden;
 }
 
@@ -21,7 +21,7 @@ body.page-exit .customize-page{
    Accordion (no-JS dropdown)
    ========================= */
 
-.accordion{
+.accordion {
   width: 100%;
   border: 1px solid #B7C33A;
   border-radius: 8px;
@@ -29,11 +29,11 @@ body.page-exit .customize-page{
   background: transparent;
 }
 
-.accordion + .accordion{
+.accordion + .accordion {
   margin-top: 8px;
 }
 
-.accordion-summary{
+.accordion-summary {
   list-style: none;
   cursor: pointer;
 
@@ -45,32 +45,32 @@ body.page-exit .customize-page{
   padding: 16px;
 }
 
-.accordion-summary::-webkit-details-marker{
+.accordion-summary::-webkit-details-marker {
   display: none;
 }
 
-.accordion[open] .select-icon{
+.accordion[open] .select-icon {
   transform: rotate(180deg);
 }
 
-.select-icon{
+.select-icon {
   transition: transform 180ms ease;
 }
 
 /* panel */
-.accordion-panel{
+.accordion-panel {
   border-top: 1px solid rgba(183, 195, 58, 0.7);
   padding: 12px 16px 16px;
 }
 
 /* choices */
-.choice-list{
+.choice-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.choice{
+.choice {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -81,13 +81,13 @@ body.page-exit .customize-page{
   background: #FFFDF6;
 }
 
-.choice-input{
+.choice-input {
   width: 18px;
   height: 18px;
   accent-color: #736A08;
 }
 
-.choice-text{
+.choice-text {
   font-family: Satoshi, system-ui, "Karla", sans-serif;
   font-size: 14px;
   letter-spacing: 0.28px;

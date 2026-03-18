@@ -59,17 +59,17 @@
 
   <!-- bottom nav (account active) -->
   <nav class="bottom-nav">
-    <a href="index.html" class="nav-item">
+    <a href="menu.php" class="nav-item">
       <img src="../assets/images/icons/Home.svg" alt="Order" class="nav-icon">
       <span>Order</span>
     </a>
 
-    <a href="bag.html" class="nav-item">
+    <a href="bag.php" class="nav-item">
       <img src="../assets/images/icons/Bag.svg" alt="Bag" class="nav-icon">
       <span>Bag</span>
     </a>
 
-    <a href="account.html" class="nav-item active">
+    <a href="account.php" class="nav-item active">
       <img src="../assets/images/icons/Account.svg" alt="Account" class="nav-icon">
       <span>Account</span>
     </a>
